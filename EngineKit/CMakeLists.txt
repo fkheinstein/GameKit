@@ -6,7 +6,6 @@ string(REPLACE " " "_" PROJ_NAME ${PROJ_NAME})
 
 
 
-
 # encode version number as <major>.<minor>.<patch>:<changeset>
 set(ENGINE_VERSION_MAJOR "1")
 set(ENGINE_VERSION_MINOR "0")
@@ -14,7 +13,19 @@ set(ENGINE_VERSION_PATCH "1")
 set(ENGINE_VERSION_EXTRA "0")
 set(PROJECT_BUILD_VERSION    "${ENGINE_VERSION_MAJOR}.${ENGINE_VERSION_MINOR}.${ENGINE_VERSION_PATCH}")
 
-project(${PROJ_NAME} VERSION "${PROJECT_BUILD_VERSION}" LANGUAGES C;CXX)
+
+set(PROJECT_VERSION_MAJOR  ${ENGINE_VERSION_MAJOR})
+set(PROJECT_VERSION_MINOR  ${ENGINE_VERSION_MINOR})
+set(PROJECT_VERSION_PATCH  ${ENGINE_VERSION_PATCH})
+
+set(PROJECT_VERSION  ${PROJECT_BUILD_VERSION})
+
+MESSAGE(STATUS "PROJECT_BUILD_VERSION: " ${PROJECT_BUILD_VERSION})
+
+project(${PROJ_NAME} 
+         VERSION ${PROJECT_BUILD_VERSION} 
+         DESCRIPTION "A project with external library"
+         LANGUAGES C;CXX )
 
 
 
@@ -58,16 +69,19 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type: None Debug Release RelWithDebInfo MinSizeRel" FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
-option(E_DEBUG   "Enable E_DEBUG"   on)
-option(E_IMGUI   "Enable E_IMGUI"   on)
+option(FTS_DEBUG   "Enable FTS_DEBUG"   on)
+option(FTS_IMGUI   "Enable FTS_IMGUI"   on)
 option(_DEBUG    "Enable _DEBUG"    on)
 option(NDEBUG    "Enable NDEBUG"    on)
 
 
+set(BUILD_TESTING ON)
 
 # -- configure cmake modules path
 set(ENGINEKit_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
-set(CMAKE_MODULE_PATH  ${ENGINEKit_MODULE_PATH})
+#set(CMAKE_MODULE_PATH  ${ENGINEKit_MODULE_PATH})
+list(APPEND CMAKE_MODULE_PATH  ${ENGINEKit_MODULE_PATH})
+
 
 
 MESSAGE(STATUS "CMAKE_BUILD_TYPE: " ${CMAKE_BUILD_TYPE})
@@ -95,6 +109,7 @@ endif(GIT_FOUND)
 set(BUILD_VERSION    "${ENGINE_VERSION_MAJOR}.${ENGINE_VERSION_MINOR}.${ENGINE_VERSION_PATCH}.${ENGINE_VERSION_EXTRA}")
 
 set(ENGINE_SHORT_LICENSE "GNU General Public License")
+
 
 
 
@@ -185,5 +200,9 @@ message(STATUS "CXX Compiler: ${CMAKE_CXX_COMPILER_ID}")
 add_subdirectory (${DEPS_DIR})
 
 add_subdirectory (${Engine_DIR})
-add_subdirectory (${EngineTest_DIR})
+
 add_subdirectory (${EngineSandbox_DIR})
+
+if(BUILD_TESTING)
+    add_subdirectory (${EngineTest_DIR})
+endif()

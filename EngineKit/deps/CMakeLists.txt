@@ -109,6 +109,12 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Freetype-GL")
 #set_property(TARGET common          PROPERTY FOLDER "ThirdPartyLibraries")
 #set_property(TARGET OpenAL          PROPERTY FOLDER "ThirdPartyLibraries")
 
+
+set_property(TARGET gtest_main          PROPERTY FOLDER "ThirdPartyLibraries")
+set_property(TARGET gtest          PROPERTY FOLDER "ThirdPartyLibraries")
+set_property(TARGET gmock_main          PROPERTY FOLDER "ThirdPartyLibraries")
+set_property(TARGET gmock          PROPERTY FOLDER "ThirdPartyLibraries")
+
 set_property(TARGET freetype        PROPERTY FOLDER "ThirdPartyLibraries")
 
 

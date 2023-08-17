@@ -67,7 +67,6 @@ file (GLOB_RECURSE EngineCore_SRC
 "${Engine_DIR}/*.c??")
 
 
-
 #SETUP_GROUPS("${ASSETS_FILES}")
 
 GROUPSOURCES(${Engine_DIR} Src)
@@ -77,6 +76,9 @@ add_library(${PROJ_NAME} SHARED
        # ${SHADERS} 
        # ${Engine_DIR}/Utils/glm.natvis
         )
+
+target_link_libraries(${PROJ_NAME}  SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog
+                                    freetype-gl fmod_vc fmodstudio_vc)
 
 
 add_custom_command(

@@ -1,0 +1,145 @@
+
+W:\GameKit\EngineKit>echo ######################################################## Start 
+######################################################## Start
+
+W:\GameKit\EngineKit>set START_TIME=14:27:11,03 
+
+W:\GameKit\EngineKit>echo ######################################################## 
+########################################################
+
+W:\GameKit\EngineKit>echo Build This Application 
+Build This Application
+
+W:\GameKit\EngineKit>echo ######################################################## 
+########################################################
+
+W:\GameKit\EngineKit>echo
+ECHO is on.
+
+W:\GameKit\EngineKit>mkdir  build 
+
+W:\GameKit\EngineKit>cd build 
+
+W:\GameKit\EngineKit\build>mkdir  build.windows 
+
+W:\GameKit\EngineKit\build>cd build.windows 
+
+W:\GameKit\EngineKit\build\build.windows>del CMakeCache.txt 
+
+W:\GameKit\EngineKit\build\build.windows>echo ****** 
+******
+
+W:\GameKit\EngineKit\build\build.windows>cmake -G "Visual Studio 16 2019"   ../../   -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEBUG_POSTFIX="d"   -DBUILD_SHARED_LIBS=1 
+-- PROJECT_BUILD_VERSION: 1.0.1
+-- Selecting Windows SDK version 10.0.22000.0 to target Windows 10.0.19045.
+-- The C compiler identification is MSVC 19.29.30151.0
+-- The CXX compiler identification is MSVC 19.29.30151.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Build Target: WINDOWS
+-- CMAKE_BUILD_TYPE: Debug
+-- PROJECT_SOURCE_DIR: W:/GameKit/EngineKit
+-- Found Git: C:/Program Files/Git/cmd/git.exe  
+-- Building from GIT
+-- Git Tools : 
+-- Revision  : 44e92c7
+-- Creator   : 
+-- Date      : 
+-- #--------------------- Starting project generation ---------------------
+-- CMake Version: 3.26.0-rc4
+-- CMake Generator: Visual Studio 16 2019
+-- Generating project: EngineKit v.1.0.1
+-- C Compiler: MSVC
+-- CXX Compiler: MSVC
+WARNING: Please install the Python packages [paramiko, scp] for full script operation.
+--- Cached state for SDL2 equals expected state; skipping library
+--- Cached state for SDL2_image equals expected state; skipping library
+--- Cached state for SDL2_mixer equals expected state; skipping library
+--- Cached state for SDL2_ttf equals expected state; skipping library
+--- Cached state for SGLMemory equals expected state; skipping library
+--- Cached state for spdlog equals expected state; skipping library
+--- Cached state for googletest equals expected state; skipping library
+--- Cached state for glew-cmake equals expected state; skipping library
+--- Cached state for glfw equals expected state; skipping library
+--- Cached state for glm equals expected state; skipping library
+--- Cached state for imgui equals expected state; skipping library
+--- Cached state for stb equals expected state; skipping library
+--- Cached state for entt equals expected state; skipping library
+--- Cached state for ImGuizmo equals expected state; skipping library
+--- Cached state for assimp equals expected state; skipping library
+--- Cached state for glslang equals expected state; skipping library
+--- Cached state for meshoptimizer equals expected state; skipping library
+--- Cached state for freetype equals expected state; skipping library
+--- Cached state for freetype-gl equals expected state; skipping library
+--- Cached state for openal-soft equals expected state; skipping library
+--- Cached state for stduuid equals expected state; skipping library
+--- Cached state for FastDelegate equals expected state; skipping library
+--- Cached state for dds-ktx equals expected state; skipping library
+--- Cached state for msdfgen equals expected state; skipping library
+--- Cached state for msdf-atlas-gen equals expected state; skipping library
+--- Finished
+-- Found OpenGL: opengl32   
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Found Threads: TRUE  
+-- Using Win32 for window creation
+-- Build spdlog: 1.9.2
+-- Build type: Debug
+-- Shared libraries enabled
+-- Looking for DirectX...
+-- DirectX_PREFIX_PATH changed.
+-- Could not locate DirectX
+-- compiling zlib from sources
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of off64_t
+-- Check size of off64_t - failed
+-- Looking for fseeko
+-- Looking for fseeko - not found
+-- Looking for unistd.h
+-- Looking for unistd.h - not found
+-- Build an import-only version of Assimp.
+-- Could NOT find rt (missing: RT_LIBRARY) 
+-- Enabled importer formats: OBJ GLTF
+-- Disabled importer formats: AMF 3DS AC ASE ASSBIN B3D BVH COLLADA DXF CSM HMP IRRMESH IRR LWO LWS M3D MD2 MD3 MD5 MDC MDL NFF NDO OFF OGRE OPENGEX PLY MS3D COB BLEND IFC XGL FBX Q3D Q3BSP RAW SIB SMD STL TERRAGEN 3D X X3D 3MF MMD STEP
+-- Enabled exporter formats:
+-- Disabled exporter formats: 3DS ASSBIN ASSXML COLLADA M3D OBJ OPENGEX PLY FBX STL X X3D GLTF 3MF ASSJSON STEP
+-- Found Python3: C:/Python311/python.exe (found version "3.11.4") found components: Interpreter 
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) 
+-- Could NOT find PNG (missing: PNG_LIBRARY PNG_PNG_INCLUDE_DIR) 
+-- Could NOT find ZLIB (missing: ZLIB_LIBRARY ZLIB_INCLUDE_DIR) 
+-- Could NOT find BZip2 (missing: BZIP2_LIBRARIES BZIP2_INCLUDE_DIR) 
+-- Could NOT find BrotliDec (missing: BROTLIDEC_INCLUDE_DIRS BROTLIDEC_LIBRARIES) 
+-- Configuring done (12.9s)
+-- Generating done (1.5s)
+-- Build files have been written to: W:/GameKit/EngineKit/build/build.windows
+
+W:\GameKit\EngineKit\build\build.windows>echo ######################################################## END 
+######################################################## END
+
+W:\GameKit\EngineKit\build\build.windows>echo Start Time: 14:27:11,03 
+Start Time: 14:27:11,03
+
+W:\GameKit\EngineKit\build\build.windows>echo End Time: 14:27:25,84 
+End Time: 14:27:25,84
+
+W:\GameKit\EngineKit\build\build.windows>cd ../.. 
+
+W:\GameKit\EngineKit>pause
+Press any key to continue . . . 

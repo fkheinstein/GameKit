@@ -23,8 +23,23 @@ include_directories(${INCLUDE_OUTPUT_PATH})
 include_directories(${Engine_DIR})
 include_directories("${DEPS_DIR}/src/googletest/googletest/include")
 
+include_directories("${DEPS_DIR}/src/SDL2/include")
+include_directories("${DEPS_DIR}/src/SDL2_image/include")
+include_directories("${DEPS_DIR}/src/SDL2_mixer/include")
+include_directories("${DEPS_DIR}/src/SDL2_ttf/include")
+include_directories("${DEPS_DIR}/src/freetype-gl")
+
 
 link_directories(${LIBRARY_OUTPUT_PATH})
+
+link_directories("${DEPS_DIR}/src/SDL2/lib/x64")
+link_directories("${DEPS_DIR}/src/SDL2_image/lib/x64")
+link_directories("${DEPS_DIR}/src/SDL2_mixer/lib/x64")
+link_directories("${DEPS_DIR}/src/SDL2_ttf/lib/x64")
+link_directories("${DEPS_DIR}/vendor/FMOD/core/lib/x64")
+link_directories("${DEPS_DIR}/vendor/FMOD/fsbank/lib/x64")
+link_directories("${DEPS_DIR}/vendor/FMOD/studio/lib/x64")
+
 
 
 
@@ -33,10 +48,12 @@ file(GLOB_RECURSE SRC_FILES
     "Src/*.cpp"
     "Src/*.rc")
 
-add_executable(${PROJ_NAME}  EngineTest.cpp ${SRC_FILES}  )
+add_executable(${PROJ_NAME}  EngineTest.cpp  ${SRC_FILES}  )
 
 target_link_libraries(${PROJ_NAME}
         PRIVATE
         gtest
         gmock
-        EngineLib )
+        EngineLib
+        SDL2
+        )

@@ -12,8 +12,8 @@
 
 
 // Used to define the configuration of the engine
-#cmakedefine  E_DEBUG
-#cmakedefine  E_IMGUI
+#cmakedefine  FTS_DEBUG
+#cmakedefine  FTS_IMGUI
 #cmakedefine  NDEBUG
 #cmakedefine  _DEBUG
 
