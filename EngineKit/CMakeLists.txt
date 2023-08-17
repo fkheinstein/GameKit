@@ -101,8 +101,6 @@ set(ENGINE_SHORT_LICENSE "GNU General Public License")
 # -------------------------------
 # Setup the solution
 # -------------------------------
-#project(${PROJ_NAME} VERSION "${PROJECT_BUILD_VERSION}" LANGUAGES C;CXX)
-
 message(STATUS "#--------------------- Starting project generation ---------------------")
 message(STATUS "CMake Version: ${CMAKE_VERSION}")
 message(STATUS "CMake Generator: ${CMAKE_GENERATOR}")
@@ -184,7 +182,7 @@ message(STATUS "C Compiler: ${CMAKE_C_COMPILER_ID}")
 message(STATUS "CXX Compiler: ${CMAKE_CXX_COMPILER_ID}")
 
 
-#add_subdirectory (${DEPS_DIR})
+add_subdirectory (${DEPS_DIR})
 
 add_subdirectory (${Engine_DIR})
 add_subdirectory (${EngineTest_DIR})

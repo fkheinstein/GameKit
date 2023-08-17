@@ -20,7 +20,7 @@ del CMakeCache.txt
 
 echo ******
 @rem cmake -G"Visual Studio 15 2017 Win64" ../../   -DCMAKE_BUILD_TYPE=Debug
-cmake -G "Visual Studio 16 2019"   ../../   -DCMAKE_BUILD_TYPE=Release -DCMAKE_UNITY_BUILD=ON
+cmake -G "Visual Studio 16 2019"   ../../   -DCMAKE_BUILD_TYPE=Release 
 
 echo ######################################################## END
 

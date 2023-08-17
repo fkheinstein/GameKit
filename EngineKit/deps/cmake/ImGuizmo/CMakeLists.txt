@@ -26,7 +26,7 @@ include_directories(../../src/ImGuizmo)
 
 
 
-add_library(ImGui  
+add_library(ImGui
 
      ../../src/imgui/imconfig.h
      ../../src/imgui/imgui.cpp
@@ -41,17 +41,17 @@ add_library(ImGui
      ../../src/imgui/imstb_truetype.h
 
 
-    ../../src/imgui/backends/imgui_impl_sdl.h 
-    ../../src/imgui/backends/imgui_impl_sdl.cpp 
-    ../../src/imgui/backends/imgui_impl_glfw.h 
-    ../../src/imgui/backends/imgui_impl_glfw.cpp 
-    ../../src/imgui/backends/imgui_impl_opengl3.h 
-    ../../src/imgui/backends/imgui_impl_opengl3.cpp 
+    ../../src/imgui/backends/imgui_impl_sdl.h
+    ../../src/imgui/backends/imgui_impl_sdl.cpp
+    ../../src/imgui/backends/imgui_impl_glfw.h
+    ../../src/imgui/backends/imgui_impl_glfw.cpp
+    ../../src/imgui/backends/imgui_impl_opengl3.h
+    ../../src/imgui/backends/imgui_impl_opengl3.cpp
 )
 
 
-add_library(ImGuizmo 
-        ../../src/ImGuizmo/ImGuizmo.cpp 
+add_library(ImGuizmo
+        ../../src/ImGuizmo/ImGuizmo.cpp
         ../../src/ImGuizmo/ImGuizmo.h)
 
 
@@ -64,7 +64,6 @@ add_library(ImGuizmo
         )
 
 
-        
 target_link_libraries(ImGui PRIVATE libglew_static glfw glad)
 target_link_libraries(ImGuizmo PRIVATE libglew_static glfw glad)
 

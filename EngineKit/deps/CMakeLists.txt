@@ -13,6 +13,10 @@ endif()
 
 
 
+#set(BUILD_SHARED_LIBS "ON")
+#set(BUILD_STATIC_LIBS "OFF")
+
+
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
@@ -33,7 +37,8 @@ set(ASSIMP_BUILD_GLTF_IMPORTER ON CACHE BOOL "")
 add_definitions(-DGLEW_STATIC)
 #option(glew-cmake_BUILD_SHARED off FORCE)
 
-
+set(FREETYPE_INCLUDE_DIRS       "${DEPS_DIR}/src/freetype/include")
+set(FREETYPE_LIBRARY            "${LIBRARY_OUTPUT_PATH}/Debug/freetyped.lib")
 
 set(ALSOFT_UTILS OFF)
 set(ALSOFT_EXAMPLES OFF)
@@ -48,7 +53,8 @@ set(LIBTYPE STATIC)
 
 
 
- 
+set(CMAKE_MODULE_PATH  ${ENGINEKit_MODULE_PATH})
+
 
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glew-cmake")
@@ -58,17 +64,16 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/spdlog")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/entt")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/assimp")
 
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/openal-soft")
-
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/freetype")
+#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/openal-soft")
+#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/freetype")
 
 
 #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdf-atlas-gen/msdfgen")
 
+  # This project is tested using GoogleTest.
+  add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/googletest")
 
 
-
-set(CMAKE_MODULE_PATH  ${GAMEENGINE_MODULE_PATH})
 
 
 set(MSDFGEN_CORE_ONLY ON)
@@ -84,11 +89,11 @@ set(MSDFGEN_INSTALL ON CACHE BOOL "")
 set(MSDFGEN_USE_SKIA OFF CACHE BOOL "")
 
 #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdfgen")
-
-
 #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdf-atlas-gen")
 
 
+
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/freetype")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ImGuizmo")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Freetype-GL")
 
@@ -101,18 +106,23 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Freetype-GL")
 #set_property(TARGET msdfgen-ext          PROPERTY FOLDER "ThirdPartyLibraries")
 
 
-set_property(TARGET common          PROPERTY FOLDER "ThirdPartyLibraries")
-set_property(TARGET OpenAL          PROPERTY FOLDER "ThirdPartyLibraries")
+#set_property(TARGET common          PROPERTY FOLDER "ThirdPartyLibraries")
+#set_property(TARGET OpenAL          PROPERTY FOLDER "ThirdPartyLibraries")
+
+set_property(TARGET freetype        PROPERTY FOLDER "ThirdPartyLibraries")
+
 
 set_property(TARGET glfw            PROPERTY FOLDER "ThirdPartyLibraries")
 set_property(TARGET spdlog          PROPERTY FOLDER "ThirdPartyLibraries")
 set_property(TARGET assimp          PROPERTY FOLDER "ThirdPartyLibraries")
 set_property(TARGET aob             PROPERTY FOLDER "ThirdPartyLibraries")
+
+
 if(WIN32)
  set_property(TARGET zlib          PROPERTY FOLDER "ThirdPartyLibraries")
  set_property(TARGET zlibstatic    PROPERTY FOLDER "ThirdPartyLibraries")
  set_property(TARGET IrrXML        PROPERTY FOLDER "ThirdPartyLibraries")
- set_property(TARGET UpdateAssimpLibsDebugSymbolsAndDLLs PROPERTY FOLDER "ThirdPartyLibraries") 
+ set_property(TARGET UpdateAssimpLibsDebugSymbolsAndDLLs PROPERTY FOLDER "ThirdPartyLibraries")
 endif()
 
 set_property(TARGET uninstall        PROPERTY FOLDER "ThirdPartyLibraries")

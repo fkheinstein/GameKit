@@ -59,6 +59,15 @@
     },
 
 
+    {
+        "name": "googletest",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/google/googletest.git",
+            "revision": "687c589949eaf8734484491a6882a7fc56aebc12"
+        }
+    },
+
 
     {
         "name": "glew-cmake",

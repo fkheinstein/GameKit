@@ -8,8 +8,14 @@ project("freetype-gl")
 
 if(WIN32)
 
+#set(FREETYPE_INCLUDE_DIRS       "${DEPS_DIR}/src/freetype/include")
+#set(FREETYPE_LIBRARY            "${LIBRARY_OUTPUT_PATH}/Debug/freetyped.lib")
+
+
 include_directories(${FREETYPE_INCLUDE_DIRS})
 #include_directories(../../src/freetype)
+
+
 
 elseif(UNIX)
 
@@ -20,8 +26,7 @@ endif()
 
 
 
-add_library(freetype-gl  
-
+add_library(freetype-gl
 
 	../../src/freetype-gl/distance-field.c
 	../../src/freetype-gl/distance-field.h
@@ -37,13 +42,13 @@ add_library(freetype-gl
 	../../src/freetype-gl/utf8-utils.h
 	../../src/freetype-gl/vec234.h
 	../../src/freetype-gl/vector.c
-	../../src/freetype-gl/vector.h 
-	
+	../../src/freetype-gl/vector.h
+
 	../../src/freetype-gl/ftgl-utils.h
 	../../src/freetype-gl/ftgl-utils.c
 
 	../../src/freetype-gl/freetype-gl.h
-	
+
 
 )
 
