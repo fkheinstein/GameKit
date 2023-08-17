@@ -33,6 +33,6 @@ file(GLOB_RECURSE SRC_FILES
 
 add_executable(${PROJ_NAME}  main.cpp ${SRC_FILES}  )
 
-target_link_libraries(${PROJ_NAME} 
-        PRIVATE  
+target_link_libraries(${PROJ_NAME}
+        PRIVATE
         EngineLib )
