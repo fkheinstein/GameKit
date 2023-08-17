@@ -1,0 +1,229 @@
+[
+
+    {
+        "name": "SDL2",
+        "source": {
+            "type": "archive",
+            "url": "https://www.libsdl.org/release/SDL2-devel-2.0.20-VC.zip",
+            "revision": "2.0.20"
+        }
+    },
+
+    {
+        "name": "SDL2_image",
+        "source": {
+            "type": "archive",
+            "url": "https://www.libsdl.org/projects/SDL_image/release/SDL2_image-devel-2.0.5-VC.zip",
+            "revision": "2.0.5"
+        }
+    },
+
+    {
+        "name": "SDL2_mixer",
+        "source": {
+            "type": "archive",
+            "url": "https://www.libsdl.org/projects/SDL_mixer/release/SDL2_mixer-devel-2.0.4-VC.zip",
+            "revision": "2.0.4"
+        }
+    },
+
+
+    {
+        "name": "SDL2_ttf",
+        "source": {
+            "type": "archive",
+            "url": "https://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-devel-2.0.12-VC.zip",
+            "revision": "2.0.12"
+        }
+    },
+
+
+    {
+        "name": "SGLMemory",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/heinsteinh/SGLMemory.git",
+            "revision": "61aaf79a7e1f441985d56c542d461db04a634f69"
+        }
+    },
+
+
+
+    {
+        "name": "spdlog",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gabime/spdlog.git",
+            "revision": "2f2d04b3e840428a18942ca2d3d65203ec564647"
+        }
+    },
+
+
+
+    {
+        "name": "glew-cmake",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Perlmint/glew-cmake.git",
+            "revision": "7c2b7514f64234756f7df051b9316f1e46f5a6e7"
+        }
+    },
+
+
+    {
+        "name": "glfw",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/glfw/glfw.git",
+            "revision": "3.3.4"
+        }
+    },
+
+
+    {
+        "name": "glm",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/g-truc/glm.git",
+            "revision": "0.9.9.8"
+        }
+    },
+
+    {
+        "name": "imgui",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ocornut/imgui.git",
+            "revision": "v1.83"
+        }
+    },
+
+    {
+        "name": "stb",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nothings/stb.git",
+            "revision": "c9064e317699d2e495f36ba4f9ac037e88ee371a"
+        }
+    },
+
+    {
+        "name": "entt",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/skypjack/entt",
+            "revision": "28aa35160de343a55e95ddd685286af68997cccd"
+        }
+    },
+
+    {
+        "name": "ImGuizmo",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CedricGuillemet/ImGuizmo",
+            "revision": "3a676c4efcab65817658d34eebb56cb91663d5ed"
+        }
+    },
+
+    {
+        "name": "assimp",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/assimp/assimp.git",
+            "revision": "a9f82dbe0b8a658003f93c7b5108ee4521458a18"
+        }
+    },
+
+    {
+        "name": "glslang",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KhronosGroup/glslang.git",
+            "revision": "6fe560f74f472726027e4059692c6eb1e7d972dc"
+        }
+    },
+
+    {
+        "name": "meshoptimizer",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zeux/meshoptimizer",
+            "revision": "v0.16"
+        }
+    },
+
+    {
+        "name": "freetype",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/freetype/freetype.git",
+            "revision": "3f83daeecb1a78d851b660eed025eeba362c0e4a"
+        }
+    },
+
+    {
+        "name": "freetype-gl",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rougier/freetype-gl.git",
+            "revision": "85d7850744465ac1dcd00b202787d72a4a3a1f5d"
+        }
+    },
+
+    {
+        "name": "openal-soft",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/kcat/openal-soft",
+            "revision": "f80470bb228f8680917c6c4cd5306d9b5176cb3c"
+        }
+    },
+
+    {
+        "name": "stduuid",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mariusbancila/stduuid.git",
+            "revision": "3afe7193facd5d674de709fccc44d5055e144d7a"
+        }
+    },
+
+    {
+        "name": "FastDelegate",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dreamcat4/FastDelegate.git",
+            "revision": "e46c00b19f21f834dabe7c0ee870a55f84bab3d4"
+        }
+    },
+
+
+    {
+        "name": "dds-ktx",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/septag/dds-ktx.git",
+            "revision": "42dd8aa6ded90b1ec06091522774feff51e83fc5"
+        }
+    },
+
+
+    {
+        "name": "msdfgen",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Chlumsky/msdfgen.git",
+            "revision": "7ff249bcd4da6678c5779d9664633c039fb50c0a"
+        }
+    },
+
+    {
+        "name": "msdf-atlas-gen",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Chlumsky/msdf-atlas-gen.git",
+            "revision": "b5d54f301237bfcdfb888936ddba48ae3c878cc7"
+        }
+    }
+
+]

@@ -1,32 +1,12 @@
-# Prerequisites
-*.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
 
-# Precompiled Headers
-*.gch
-*.pch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
+EngineKit/deps/archives/
+EngineKit/deps/src/
+EngineKit/deps/.bootstrap.json
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+EngineKit/imgui.ini
+EngineKit/SGLEngine.log
+EngineKit/Host
+EngineKit/build
