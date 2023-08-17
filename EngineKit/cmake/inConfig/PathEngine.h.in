@@ -1,6 +1,8 @@
-#pragma once
 #ifndef __PATH_H__
 #define __PATH_H__
+
+#pragma once
+
 
 // version variable that will be substituted by cmake
 // This shows an example using the @ variable type

@@ -41,4 +41,10 @@
 #include <stb_image_write.h>
 
 
+#include <Core/Base.h>
+#include <Core/Log.h>
+#include <Core/Assert.h>
+#include <Core/Macro.h>
+
+
 #endif // __SPCH_H__

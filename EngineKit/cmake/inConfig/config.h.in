@@ -1,3 +1,7 @@
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
+
 #pragma once
 
 /** @def
@@ -17,3 +21,4 @@
 #cmakedefine  NDEBUG
 #cmakedefine  _DEBUG
 
+#endif // __CONFIG_H__

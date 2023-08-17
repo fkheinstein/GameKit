@@ -71,9 +71,8 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 option(FTS_DEBUG   "Enable FTS_DEBUG"   on)
 option(FTS_IMGUI   "Enable FTS_IMGUI"   on)
-option(_DEBUG    "Enable _DEBUG"    on)
+#option(_DEBUG    "Enable _DEBUG"    on)
 option(NDEBUG    "Enable NDEBUG"    on)
-
 
 set(BUILD_TESTING ON)
 

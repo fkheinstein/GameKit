@@ -20,7 +20,7 @@ del CMakeCache.txt
 
 echo ******
 @rem cmake -G"Visual Studio 15 2017 Win64" ../../   -DCMAKE_BUILD_TYPE=Debug
-cmake -G "Visual Studio 17 2022" -A x64   ../../   -DCMAKE_BUILD_TYPE=Debug -DCMAKE_UNITY_BUILD=ON
+cmake -G "Visual Studio 17 2022" -A x64   ../../   -DCMAKE_BUILD_TYPE=Debug  -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=1   -DBUILD_SHARED_LIBS=0  -DCMAKE_DEBUG_POSTFIX="d"
 echo ######################################################## END
 
 echo Start Time: %START_TIME%
