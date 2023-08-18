@@ -1,7 +1,6 @@
 #ifndef __LAYER_H__
 #define __LAYER_H__
 
-
 #include <Core/Event.h>
 
 
