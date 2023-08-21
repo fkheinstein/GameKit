@@ -25,7 +25,6 @@ include_directories("${DEPS_DIR}/src/stduuid/include")
 include_directories("${DEPS_DIR}/src/FastDelegate")
 
 
-
 include_directories("${DEPS_DIR}/vendor/glad/include")
 include_directories("${DEPS_DIR}/vendor/FMOD/core/inc")
 include_directories("${DEPS_DIR}/vendor/FMOD/fsbank/inc")
@@ -52,6 +51,8 @@ link_directories("${DEPS_DIR}/vendor/FMOD/fsbank/lib/x64")
 link_directories("${DEPS_DIR}/vendor/FMOD/studio/lib/x64")
 
 
+
+
 include(${ENGINEKit_MODULE_PATH}/FTS_CommonMacros.cmake)
 include(${ENGINEKit_MODULE_PATH}/utilities.cmake)
 
@@ -68,11 +69,12 @@ file (GLOB_RECURSE EngineCore_SRC
 "${Engine_DIR}/*.c??")
 
 
+
 #SETUP_GROUPS("${ASSETS_FILES}")
 
 GROUPSOURCES(${Engine_DIR} Src)
 
-add_library(${PROJ_NAME} SHARED 
+add_library(${PROJ_NAME}  
         ${EngineCore_SRC} 
        # ${SHADERS} 
        # ${Engine_DIR}/Utils/glm.natvis
@@ -81,6 +83,8 @@ add_library(${PROJ_NAME} SHARED
 target_link_libraries(${PROJ_NAME}  SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog
                                     freetype-gl fmod_vc fmodstudio_vc)
 
+target_link_libraries(${PROJ_NAME} SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog
+                                   freetype-gl fmod_vc fmodstudio_vc)
 
 add_custom_command(
         TARGET ${PROJ_NAME} 

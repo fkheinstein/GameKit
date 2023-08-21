@@ -1,7 +1,7 @@
 #ifndef __DEVICE_H__
 #define __DEVICE_H__
 
-#include "Renderer/Graphics.h"
+#include "Graphics/Graphics.h"
 
 namespace fts
 {

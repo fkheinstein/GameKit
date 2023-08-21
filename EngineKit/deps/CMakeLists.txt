@@ -12,15 +12,12 @@ endif()
 
 
 
-
-#set(BUILD_SHARED_LIBS "ON")
-#set(BUILD_STATIC_LIBS "OFF")
-
-
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
 set(GLFW_INSTALL OFF CACHE BOOL "")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glew-cmake")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glfw")
 
 set(ASSIMP_BUILD_ZLIB ON CACHE BOOL "" FORCE)
 set(ASSIMP_NO_EXPORT ON CACHE BOOL "")
@@ -34,8 +31,7 @@ set(ASSIMP_BUILD_OBJ_IMPORTER ON CACHE BOOL "")
 set(ASSIMP_BUILD_GLTF_IMPORTER ON CACHE BOOL "")
 
 
-add_definitions(-DGLEW_STATIC)
-#option(glew-cmake_BUILD_SHARED off FORCE)
+
 
 set(FREETYPE_INCLUDE_DIRS       "${DEPS_DIR}/src/freetype/include")
 set(FREETYPE_LIBRARY            "${LIBRARY_OUTPUT_PATH}/Debug/freetyped.lib")
@@ -57,8 +53,8 @@ set(CMAKE_MODULE_PATH  ${ENGINEKit_MODULE_PATH})
 
 
 
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glew-cmake")
-add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glfw")
+
+
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glm")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/spdlog")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/entt")
@@ -98,7 +94,6 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ImGuizmo")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Freetype-GL")
 
 
-
 #set_property(TARGET msdf-atlas-gen          PROPERTY FOLDER "ThirdPartyLibraries")
 #set_property(TARGET msdf-atlas-gen-standalone          PROPERTY FOLDER "ThirdPartyLibraries")
 #set_property(TARGET msdfgen          PROPERTY FOLDER "ThirdPartyLibraries")
@@ -133,6 +128,6 @@ endif()
 
 set_property(TARGET uninstall        PROPERTY FOLDER "ThirdPartyLibraries")
 
-set_property(TARGET libglew_shared   PROPERTY FOLDER "ThirdPartyLibraries")
-set_property(TARGET libglew_static   PROPERTY FOLDER "ThirdPartyLibraries")
+#set_property(TARGET libglew_shared   PROPERTY FOLDER "ThirdPartyLibraries")
+#set_property(TARGET libglew_static   PROPERTY FOLDER "ThirdPartyLibraries")
 

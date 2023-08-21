@@ -9,17 +9,6 @@ include_directories("${DEPS_DIR}/src/SDL2_mixer/include")
 include_directories("${DEPS_DIR}/src/SDL2_ttf/include")
 
 
-include_directories("${DEPS_DIR}/vendor/glad/include")
-
-
-set(GLAD_SOURCES ${DEPS_DIR}/vendor/glad/src/glad.c ) #${DEPS_DIR}/glad/src/vulkan.c
-if(WIN32)
-	#set(GLAD_SOURCES ${GLAD_SOURCES} ${DEPS_DIR}/glad/src/wgl.c)
-endif()
-
-add_library(glad ${GLAD_SOURCES})
-set_property(TARGET glad          PROPERTY FOLDER "ThirdPartyLibraries")
-
 
 include_directories(../../src/imgui)
 include_directories(../../src/ImGuizmo)
@@ -27,7 +16,6 @@ include_directories(../../src/ImGuizmo)
 
 
 add_library(ImGui
-
      ../../src/imgui/imconfig.h
      ../../src/imgui/imgui.cpp
      ../../src/imgui/imgui.h
@@ -55,17 +43,9 @@ add_library(ImGuizmo
         ../../src/ImGuizmo/ImGuizmo.h)
 
 
- target_compile_definitions(
-        ImGui
-        PRIVATE
-        IMGUI_IMPL_OPENGL_LOADER_GLAD
-        INTERFACE
-        IMGUI_IMPL_OPENGL_LOADER_GLAD
-        )
 
-
-target_link_libraries(ImGui PRIVATE libglew_static glfw glad)
-target_link_libraries(ImGuizmo PRIVATE libglew_static glfw glad)
+target_link_libraries(ImGui PRIVATE libglew_static  glfw )
+target_link_libraries(ImGuizmo PRIVATE libglew_static  glfw )
 
 
 set_property(TARGET ImGui PROPERTY FOLDER "ThirdPartyLibraries")

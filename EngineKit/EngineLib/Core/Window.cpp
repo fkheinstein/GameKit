@@ -1,5 +1,7 @@
 #include <spch.h>
 
+#include "Core/OpenGL/GLWindow.h"
+#include "Graphics/Device.h"
 
 
 #include "Window.h"

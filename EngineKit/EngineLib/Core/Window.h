@@ -4,7 +4,7 @@
 
 #include "Core/EventStack.h"
 #include "Core/Layer.h"
-#include "Renderer/Graphics.h"
+#include "Graphics/Graphics.h"
 
 namespace fts
 {
@@ -45,6 +45,7 @@ namespace fts
         virtual void ImGuiRenderDrawData() = 0;
 
         virtual void SwapBuffer() = 0;
+        virtual void* GetNativeWindow() const  = 0;
 
         bool ShouldClose();
         void SetShouldClose(bool shouldClose);

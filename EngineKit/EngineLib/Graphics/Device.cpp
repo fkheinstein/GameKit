@@ -2,8 +2,9 @@
 
 
 #include "Core/Base.h"
+#include "Graphics/Device.h"
+#include "Graphics/OpenGL/GLDevice.h"
 
-#include "Device.h"
 
 namespace fts
 {
