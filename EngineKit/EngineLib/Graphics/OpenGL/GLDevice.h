@@ -57,8 +57,7 @@ namespace fts
             int dst_x, int dst_y, int dst_width, int dst_height,
             BufferBitMask mask, BlitFilter filter) override;
 
-        void ReadPixels(int x, int y, int width, int height, DataFormat format,
-            void* data) override;  
+        void ReadPixels(int x, int y, int width, int height, DataFormat format,  void* data) override;  
     };
 
 } // namespace fts

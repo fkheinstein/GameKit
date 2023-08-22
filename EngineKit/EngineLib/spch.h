@@ -47,4 +47,12 @@
 #include <Core/Macro.h>
 
 
+#include <Utils/Init.h>
+#include <Utils/Exception.h>
+#include <Utils/Timing.h>
+
+#include <Utils/OpenGLLibInclude.h>
+#include <Utils/GlmInclude.h>
+
+
 #endif // __SPCH_H__

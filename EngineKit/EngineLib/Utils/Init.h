@@ -2,6 +2,10 @@
 #define FEEAF2BC_B0C0_4296_8331_19859B1A1DB6
 
 
+#include <set>
+#include <map>
+
+
 namespace fts
 {
     class  Ini {
@@ -15,26 +19,20 @@ namespace fts
     void ParseStream(std::istream& stream);
     void OutputStream(std::ostream& stream) const;
 
-    static std::string MakeKey(const std::string& section,
-                               const std::string& name);
+    static std::string MakeKey(const std::string& section,  const std::string& name);
 
     // Return the list of sections found in ini file
     const std::set<std::string>& GetSections() const { return m_sections; }
 
-    void Set(const std::string& section, const std::string& name,
-             const std::string& value);
+    void Set(const std::string& section, const std::string& name, const std::string& value);
 
-    void SetInteger(const std::string& section, const std::string& name,
-                    int value);
+    void SetInteger(const std::string& section, const std::string& name, int value);
 
-    void SetReal(const std::string& section, const std::string& name,
-                 double value);
+    void SetReal(const std::string& section, const std::string& name, double value);
 
-    void SetFloat(const std::string& section, const std::string& name,
-                  float value);
+    void SetFloat(const std::string& section, const std::string& name,  float value);
 
-    void SetBoolean(const std::string& section, const std::string& name,
-                    bool value);
+    void SetBoolean(const std::string& section, const std::string& name, bool value);
 
     // Get a string value from INI file, returning default_value if not found.
     std::string Get(const std::string& section, const std::string& name,
