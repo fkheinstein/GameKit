@@ -5,7 +5,6 @@ get_filename_component(PROJ_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 string(REPLACE " " "_" PROJ_NAME ${PROJ_NAME})
 
 
-
 # encode version number as <major>.<minor>.<patch>:<changeset>
 set(ENGINE_VERSION_MAJOR "1")
 set(ENGINE_VERSION_MINOR "0")
@@ -22,8 +21,8 @@ set(PROJECT_VERSION  ${PROJECT_BUILD_VERSION})
 
 MESSAGE(STATUS "PROJECT_BUILD_VERSION: " ${PROJECT_BUILD_VERSION})
 
-project(${PROJ_NAME} 
-         VERSION ${PROJECT_BUILD_VERSION} 
+project(${PROJ_NAME}
+         VERSION ${PROJECT_BUILD_VERSION}
          DESCRIPTION "A project with external library"
          LANGUAGES C;CXX )
 
@@ -131,6 +130,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set (LIBRARY_OUTPUT_PATH               ${PROJECT_SOURCE_DIR}/Host/lib)
     set (INCLUDE_OUTPUT_PATH               ${PROJECT_SOURCE_DIR}/Host/include)
  endif()
+
 
 
 

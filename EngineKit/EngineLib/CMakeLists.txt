@@ -83,8 +83,7 @@ add_library(${PROJ_NAME}
 target_link_libraries(${PROJ_NAME}  SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog
                                     freetype-gl fmod_vc fmodstudio_vc)
 
-target_link_libraries(${PROJ_NAME} SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog
-                                   freetype-gl fmod_vc fmodstudio_vc)
+#target_link_libraries(${PROJ_NAME} SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog  freetype-gl fmod_vc fmodstudio_vc)
 
 add_custom_command(
         TARGET ${PROJ_NAME} 

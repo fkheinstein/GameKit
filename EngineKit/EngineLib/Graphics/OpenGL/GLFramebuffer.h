@@ -16,17 +16,17 @@ namespace fts
 
         void Attach(Texture& texture, int attachment, int level) override;
         void Attach(Renderbuffer& buffer, int attachment) override;
+
         Texture* GetAttachment(int attachment) override
         {
             return m_textures.at(attachment);
         }
-        void Prepare() override;
 
+        void Prepare() override;
         void ClearDepth(const float depth) override;
 
         void ClearAttachment(uint32_t attachment_id, const int* value) override;
-        void ClearAttachment(uint32_t attachment_id,
-            const uint32_t* value) override;
+        void ClearAttachment(uint32_t attachment_id, const uint32_t* value) override;
         void ClearAttachment(uint32_t attachment_id, const float* value) override;
 
     private:

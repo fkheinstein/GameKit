@@ -2,12 +2,13 @@
 
 #include "Graphics/OpenGL/GLDevice.h"
 
-// #include "Graphics/OpenGL/GLTranslator.hpp"
-// #include "Graphics/OpenGL/GLFramebuffer.hpp"
-// #include "Graphics/Texture.hpp"
-// #include "Graphics/Shader.hpp"
-// #include "Graphics/Framebuffer.hpp"
-// #include "Graphics/VertexArray.hpp"
+ #include "Graphics/OpenGL/GLTranslator.h"
+ #include "Graphics/OpenGL/GLFramebuffer.h"
+
+ #include "Graphics/Texture.h"
+ #include "Graphics/Shader.h"
+ #include "Graphics/Framebuffer.h"
+ #include "Graphics/VertexArray.h"
 
 #include <GL/glew.h>
 
@@ -59,10 +60,7 @@ namespace fts
     }
 
 
-    /*
-    * 
-    void GLDevice::DispatchCompute(int32_t num_group_x, int32_t num_group_y,
-                                   int32_t num_group_z)
+    void GLDevice::DispatchCompute(int32_t num_group_x, int32_t num_group_y,   int32_t num_group_z)
     {
         glDispatchCompute(num_group_x, num_group_y, num_group_z);
     }
@@ -74,15 +72,12 @@ namespace fts
 
     void GLDevice::DrawElements(MeshTopology topology, int count, size_t offset)
     {
-        glDrawElements(Translate(topology), count, GL_UNSIGNED_INT,
-                       (const void *)offset);
+        glDrawElements(Translate(topology), count, GL_UNSIGNED_INT,  (const void *)offset);
     }
 
-    void GLDevice::DrawElementsInstanced(MeshTopology topology, int count,
-                                         size_t offset, size_t amount)
+    void GLDevice::DrawElementsInstanced(MeshTopology topology, int count,  size_t offset, size_t amount)
     {
-        glDrawElementsInstanced(Translate(topology), count, GL_UNSIGNED_INT,
-                                (const void *)offset, amount);
+        glDrawElementsInstanced(Translate(topology), count, GL_UNSIGNED_INT,  (const void *)offset, amount);
     }
 
     void GLDevice::DrawArrays(MeshTopology topology, int first, int count)
@@ -223,11 +218,9 @@ namespace fts
                                dst_y + dst_height, gl_mask, gl_filter);
     }
 
-    void GLDevice::ReadPixels(int x, int y, int width, int height,
-                              DataFormat format, void *data)
+    void GLDevice::ReadPixels(int x, int y, int width, int height,   DataFormat format, void *data)
     {
-        glReadPixels(x, y, width, height, GetFormatType(format),
-                     GetDataType(format), data);
-    }*/
+        glReadPixels(x, y, width, height, GetFormatType(format),   GetDataType(format), data);
+    }
 
 } // namespace fts

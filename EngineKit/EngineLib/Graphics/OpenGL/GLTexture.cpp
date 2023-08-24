@@ -57,7 +57,8 @@ namespace fts
 
         if (m_format == DataFormat::Alpha8 || m_format == DataFormat::Alpha32I ||
             m_format == DataFormat::Alpha32UI || m_format == DataFormat::Alpha16F ||
-            m_format == DataFormat::Alpha32F) {
+            m_format == DataFormat::Alpha32F)
+        {
             const GLint swizzle_mask[] = { GL_ONE, GL_ONE, GL_ONE, GL_RED };
             glTextureParameteriv(m_id, GL_TEXTURE_SWIZZLE_RGBA, swizzle_mask);
         }
@@ -72,18 +73,14 @@ namespace fts
             break;
         case GL_TEXTURE_2D:
         case GL_TEXTURE_CUBE_MAP:
-            glTextureStorage2D(m_id, m_mipmap_levels, gl_sized_format, m_width,
-                m_height);
+            glTextureStorage2D(m_id, m_mipmap_levels, gl_sized_format, m_width,  m_height);
             break;
         case GL_TEXTURE_2D_MULTISAMPLE:
-            glTextureStorage2DMultisample(m_id, static_cast<GLsizei>(m_samples),
-                gl_sized_format, m_width, m_height,
-                GL_TRUE);
+            glTextureStorage2DMultisample(m_id, static_cast<GLsizei>(m_samples),  gl_sized_format, m_width, m_height,  GL_TRUE);
             break;
         case GL_TEXTURE_3D:
         case GL_TEXTURE_2D_ARRAY:
-            glTextureStorage3D(m_id, m_mipmap_levels, gl_sized_format, m_width,
-                m_height, m_depth);
+            glTextureStorage3D(m_id, m_mipmap_levels, gl_sized_format, m_width,  m_height, m_depth);
             break;
         }
     }
@@ -96,13 +93,11 @@ namespace fts
             FTS_CORE_ERROR("Unimplemented SetPixels() for texture type: {}",    gl_type);
             break;
         case GL_TEXTURE_2D:
-            glTextureSubImage2D(m_id, 0, x, y, width, height, gl_format,
-                gl_format_type, data);
+            glTextureSubImage2D(m_id, 0, x, y, width, height, gl_format, gl_format_type, data);
             break;
         case GL_TEXTURE_2D_ARRAY:
         case GL_TEXTURE_CUBE_MAP:
-            glTextureSubImage3D(m_id, 0, x, y, z, width, height, depth,
-                gl_format, gl_format_type, data);
+            glTextureSubImage3D(m_id, 0, x, y, z, width, height, depth,  gl_format, gl_format_type, data);
             break;
         }
         glGenerateTextureMipmap(m_id);
@@ -160,8 +155,7 @@ namespace fts
     void GLTexture::ReadPixels(int level, int x, int y, int z, int w, int h, int d,
         size_t size, void* data) const
     {
-        glGetTextureSubImage(m_id, level, x, y, z, w, h, d, gl_format,
-            gl_format_type, size, data);
+        glGetTextureSubImage(m_id, level, x, y, z, w, h, d, gl_format,  gl_format_type, size, data);
     }
 
     void GLTexture::GenerateMipmap() { glGenerateTextureMipmap(m_id); }

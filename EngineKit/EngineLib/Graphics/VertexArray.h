@@ -13,12 +13,17 @@ namespace fts
         static Ref<VertexArray> Create();
 
         virtual ~VertexArray() = default;
-
+        
         VertexArray(const VertexArray&) = delete;
+        VertexArray(VertexArray&&) = delete;
+        VertexArray& operator = (const VertexArray&) = delete;
+        VertexArray& operator = (VertexArray&&) = delete;
 
-        VertexArray& operator=(const VertexArray&) = delete;
+
 
         virtual uint32_t Handle() const = 0;
+        virtual void Bind() const = 0;
+        virtual void Unbind() const = 0;
 
         virtual void BindVertexBuffer(const VertexBuffer& buffer, int index) = 0;
         virtual void AddBufferLayout(const VertexBufferLayout& layout) = 0;

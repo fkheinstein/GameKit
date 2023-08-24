@@ -5,18 +5,36 @@
 #include "Core/Window.h"
 
 #include "Core/ImGuiLayer.h"
-//#include "Core/GraphicsLayer.hpp"
-
+//#include "Core/GraphicsLayer.h"
 
 #include "Graphics/Device.h"
-
+#include "Core/InputDevice.h"
 
 #include "Utils/Init.h"
+
+#include <filesystem>
+
+int main(int argc, char** argv);
+
+
+
+#define IMPLEMENT_APP(X)                          \
+    int main(int, char **)                        \
+    {                                             \
+        fts::Application::s_instance = new X;      \
+        fts::Application::s_instance->OnInit();    \
+        fts::Application::s_instance->Run();       \
+        fts::Application::s_instance->OnDestroy(); \
+        delete fts::Application::s_instance;       \
+        return 0;                                  \
+    }
 
 
 namespace fts
 {
-    class  Application {
+    class GraphicsLayer;
+    class Application    
+    {
     public:
         template <typename T = Application>
         static T& GetApp()
@@ -44,6 +62,7 @@ namespace fts
             return nullptr;
         }
 
+
         template <typename T, typename... ARGS>
         T* CreateLayer(ARGS &&...args)
         {
@@ -67,15 +86,17 @@ namespace fts
         Scope<Window> m_window;
         Scope<Device> m_device;
 
-        /*GraphicsLayer* m_graphics_layer;
+        /*
         ResourceManager m_resources;
         SceneManager m_scenes;
-        InputDevice m_input;*/
+        */
+        GraphicsLayer* m_graphics_layer;
+        InputDevice m_input;
 
     private:
         ImGuiLayer* m_imgui_layer;
 
-        //friend int ::main(int argc, char** argv);
+        friend int ::main(int argc, char** argv);
 
         void LoadSettingsFile();
 

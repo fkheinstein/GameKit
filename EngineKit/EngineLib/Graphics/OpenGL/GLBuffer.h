@@ -47,7 +47,6 @@ namespace fts
     class GLUniformBuffer : public UniformBuffer, public GLBuffer {
     public:
         GLUniformBuffer(const void* data, size_t size, BufferIOType io);
-
         ~GLUniformBuffer() = default;
 
         uint32_t GetBindingPoint() const override;

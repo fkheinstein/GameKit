@@ -24,8 +24,7 @@ namespace fts
 
         void LinkShaders() override;
 
-        void SetUniformBuffer(const std::string &name,
-                              const UniformBuffer &buffer) override;
+        void SetUniformBuffer(const std::string &name,   const UniformBuffer &buffer) override;
 
         uint32_t GetUint(const std::string &name) const override;
 

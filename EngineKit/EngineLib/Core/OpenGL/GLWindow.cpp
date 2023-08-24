@@ -43,8 +43,7 @@ namespace fts {
         // OpenGL Version
         SDL(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4));
         SDL(SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 5));
-        SDL(SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
-            SDL_GL_CONTEXT_PROFILE_CORE));
+        SDL(SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,  SDL_GL_CONTEXT_PROFILE_CORE));
 
         // MultiSampling
         if (info.msaa != MultiSampleLevel::None) {
@@ -53,8 +52,8 @@ namespace fts {
             static_cast<int>(info.msaa)));
         }
 
-        m_window = SDL_CreateWindow(info.title.c_str(), SDL_WINDOWPOS_CENTERED,
-            SDL_WINDOWPOS_CENTERED, info.width, info.height, sdl_flags);
+        m_window = SDL_CreateWindow(info.title.c_str(), SDL_WINDOWPOS_CENTERED,  SDL_WINDOWPOS_CENTERED
+            , info.width, info.height, sdl_flags);
 
         FTS_ASSERT(m_window != nullptr, SDL_GetError());
 

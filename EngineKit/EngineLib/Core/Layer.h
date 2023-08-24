@@ -18,7 +18,6 @@ namespace fts
         virtual ~Layer() { FTS_CORE_TRACE("Deleteing layer: {}", m_name); }
 
         Layer(const Layer &) = delete;
-
         Layer &operator=(const Layer &) = delete;
 
         virtual void OnPush() {}

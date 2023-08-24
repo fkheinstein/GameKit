@@ -3,6 +3,9 @@
 
 #include "IApplication.h"
 
+#include "Core/InputDevice.h"
+#include "Core/InputLayer.h"
+#include "Core/ScriptLayer.h"
 
 
 namespace fts
@@ -43,10 +46,11 @@ namespace fts
 
     void Application::OnInit()
     {
-        // m_graphics_layer = CreateLayer<GraphicsLayer>(  &m_resources, &m_scenes, m_device.get(), m_window->GetWidth(), m_window->GetHeight(), m_window->GetMSAA());
-        // PushLayer(m_graphics_layer);
-        // PushLayer(CreateLayer<ScriptLayer>());
-        // PushLayer(CreateLayer<InputLayer>(&m_input));
+        //m_graphics_layer = CreateLayer<GraphicsLayer>( /* &m_resources, &m_scenes,*/ m_device.get(), m_window->GetWidth(), m_window->GetHeight(), m_window->GetMSAA());
+        //PushLayer(m_graphics_layer);
+
+        //PushLayer(CreateLayer<ScriptLayer>());
+        PushLayer(CreateLayer<InputLayer>(&m_input));
     }
 
     void Application::OnDestroy()
@@ -121,6 +125,25 @@ namespace fts
                 ini_path);
         }
     }
+
+
+    std::filesystem::path Application::GetAppDirectory()
+    {
+        static std::filesystem::path path;
+        if (path.empty()) {
+            char buffer[255];
+#if FTS_PLATFORM_LINUX
+            size_t size = readlink("/proc/self/exe", buffer, sizeof(buffer));
+#elif FTS_PLATFORM_WINDOWS
+            size_t size = GetModuleFileNameA(NULL, buffer, sizeof(path));
+#endif
+            if (size > 0) {
+                path.assign(std::begin(buffer), std::begin(buffer) + size);
+            }
+        }
+        return path.parent_path();
+    }
+
 
     void Application::Run()
     {

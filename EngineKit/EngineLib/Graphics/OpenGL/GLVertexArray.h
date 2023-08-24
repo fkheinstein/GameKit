@@ -16,12 +16,23 @@ namespace fts
         GLVertexArray();
         ~GLVertexArray();
 
+
+        GLVertexArray(const GLVertexArray&) = delete;
+        GLVertexArray(GLVertexArray&&) = delete;
+        GLVertexArray& operator = (const GLVertexArray&) = delete;
+        GLVertexArray& operator = (GLVertexArray&&) = delete;
+
+
         void BindVertexBuffer(const VertexBuffer& buffer, int32_t index) override;
         void AddBufferLayout(const VertexBufferLayout& layout) override;
 
         void BindIndexBuffer(const IndexBuffer& buffer) override;
 
         uint32_t Handle() const override { return m_id; }
+
+        void Bind() const  override;
+        void Unbind() const override;
+
 
     private:
         std::vector<VertexBufferLayout> m_layouts;
