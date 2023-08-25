@@ -53,10 +53,10 @@ namespace fts
     {
     public:
         MeshT(const std::vector<vertexT>& vertices,  const std::vector<uint32_t>& indices, MeshTopology topology)
-            : m_vertices(vertices),
-            m_indices(indices),
-            m_topology(topology),
-            m_polygonMode(PolygonMode::Fill)
+            : m_vertices(vertices)
+            , m_indices(indices)
+            , m_topology(topology)
+            , m_polygonMode(PolygonMode::Fill)
         {
             m_vertexBuffer = VertexBuffer::Create(m_vertices.data(), m_vertices.size() * sizeof(vertexT), BufferIOType::Dynamic);
             m_indexBuffer = IndexBuffer::Create(m_indices.data(), m_indices.size(), BufferIOType::Dynamic);

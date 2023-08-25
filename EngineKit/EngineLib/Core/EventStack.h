@@ -75,8 +75,8 @@ namespace fts
 
         size_t Size() const { return m_items.size(); }
 
-        T &Front() { return m_items.front(); }
-        const T &Front() const { return m_items.front(); }
+        T& Front() { return m_items.front(); }
+        const T& Front() const { return m_items.front(); }
 
     private:
         Container m_items;

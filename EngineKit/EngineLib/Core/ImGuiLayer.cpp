@@ -66,20 +66,15 @@ namespace fts
 
     void ImGuiLayer::Begin()
     {
-        //Window* window = static_cast<Window*>(m_window);
-        //ImGui_ImplOpenGL3_NewFrame();
-        //ImGui_ImplSDL2_NewFrame((SDL_Window*)window->GetNativeWindow());
-
         m_window->ImGuiNewFrame();
         ImGui::NewFrame();
     }
 
     void ImGuiLayer::End()
     {
-        ImGui::End();
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(m_window->GetWidth(), m_window->GetHeight());
 
-        /*ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());*/
         ImGui::Render();
         m_window->ImGuiRenderDrawData();
     }

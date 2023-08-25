@@ -8,7 +8,7 @@ namespace fts
 {
 
 
-    ScriptLayer::ScriptLayer(/* args */)
+    ScriptLayer::ScriptLayer(/* args */):Layer("ScriptLayer")
     {
     }
 

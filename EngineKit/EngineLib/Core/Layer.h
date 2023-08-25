@@ -17,8 +17,10 @@ namespace fts
 
         virtual ~Layer() { FTS_CORE_TRACE("Deleteing layer: {}", m_name); }
 
-        Layer(const Layer &) = delete;
-        Layer &operator=(const Layer &) = delete;
+        Layer(const Layer&) = delete;
+        Layer& operator=(const Layer&) = delete;
+        Layer(const Layer&&) = delete;
+        Layer& operator=(const Layer&&) = delete;
 
         virtual void OnPush() {}
         virtual void OnPop() {}
@@ -34,7 +36,6 @@ namespace fts
         virtual void On(const AppQuitEvent &) {}
 
         virtual void OnRender() {}
-
         virtual void OnImGui() {}
 
         const std::string &GetName() const { return m_name; }

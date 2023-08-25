@@ -1,14 +1,12 @@
 #include <iostream>
 
 
-#include <Core/Engine.h>
-
 
 
 
 int main_old(int argc, const char** argv) {
     {
-        fts::EngineKit eng;
+        //fts::EngineKit eng;
         //eng.Run();
 
 

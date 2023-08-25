@@ -24,7 +24,6 @@ include_directories(${INCLUDE_OUTPUT_PATH})
 
 
 
-
 include_directories("${DEPS_DIR}/src/glew-cmake/include")
 include_directories("${DEPS_DIR}/src/glm")
 include_directories("${DEPS_DIR}/src/ImGuizmo")
@@ -40,6 +39,7 @@ include_directories("${DEPS_DIR}/src/SDL2_image/include")
 include_directories("${DEPS_DIR}/src/SDL2_mixer/include")
 include_directories("${DEPS_DIR}/src/SDL2_ttf/include")
 include_directories("${DEPS_DIR}/src/freetype-gl")
+
 
 
 link_directories(${LIBRARY_OUTPUT_PATH})

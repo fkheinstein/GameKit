@@ -4,10 +4,6 @@
 #pragma once
 
 #include <memory>
-//#include "Core/Base.h"
-
-
-
 
 
 #ifndef GLM_ENABLE_EXPERIMENTAL 
@@ -21,9 +17,6 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/fmt/ostr.h>
 #pragma warning(pop)
-
-
-
 
 
 namespace fts {

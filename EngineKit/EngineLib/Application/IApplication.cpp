@@ -6,7 +6,7 @@
 #include "Core/InputDevice.h"
 #include "Core/InputLayer.h"
 #include "Core/ScriptLayer.h"
-
+#include "Core/GraphicsLayer.h"
 
 namespace fts
 {
@@ -46,10 +46,10 @@ namespace fts
 
     void Application::OnInit()
     {
-        //m_graphics_layer = CreateLayer<GraphicsLayer>( /* &m_resources, &m_scenes,*/ m_device.get(), m_window->GetWidth(), m_window->GetHeight(), m_window->GetMSAA());
-        //PushLayer(m_graphics_layer);
+        m_graphics_layer = CreateLayer<GraphicsLayer>( /* &m_resources, &m_scenes,*/ m_device.get(), m_window->GetWidth(), m_window->GetHeight(), m_window->GetMSAA());
+        PushLayer(m_graphics_layer);
 
-        //PushLayer(CreateLayer<ScriptLayer>());
+        PushLayer(CreateLayer<ScriptLayer>());
         PushLayer(CreateLayer<InputLayer>(&m_input));
     }
 
@@ -64,8 +64,7 @@ namespace fts
         auto size = m_window->GetSize();
         m_settings.SetInteger("window", "width", size.x);
         m_settings.SetInteger("window", "height", size.y);
-        m_settings.SetInteger("window", "msaa",
-            static_cast<int>(m_window->GetMSAA()));
+        m_settings.SetInteger("window", "msaa", static_cast<int>(m_window->GetMSAA()));
         m_settings.SetBoolean("window", "vsync", m_window->GetIsVSync());
 
         m_settings.Save((GetAppDirectory() / setting_filename).string());

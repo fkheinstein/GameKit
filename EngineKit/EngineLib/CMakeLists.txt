@@ -59,7 +59,9 @@ include(${ENGINEKit_MODULE_PATH}/utilities.cmake)
 file(GLOB_RECURSE ASSETS_FILES LIST_DIRECTORIES false RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} assets/*.????)
 
 
-# Collect sources into the variable Engine_Framework_CmdGraphic_Common_Src
+
+
+# Collect sources into the variable 
 file (GLOB_RECURSE EngineCore_SRC
 "${Engine_DIR}/*.txt"
 "${Engine_DIR}/*.*"
@@ -67,6 +69,7 @@ file (GLOB_RECURSE EngineCore_SRC
 "${Engine_DIR}/*.inl"
 "${Engine_DIR}/*.hpp"
 "${Engine_DIR}/*.c??")
+
 
 
 

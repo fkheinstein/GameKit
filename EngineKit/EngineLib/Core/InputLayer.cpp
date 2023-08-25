@@ -11,7 +11,10 @@ namespace fts
     {
     }
 
-    void InputLayer::OnTick(float) { m_input->Tick(); }
+    void InputLayer::OnTick(float) 
+    {
+        m_input->Tick(); 
+    }
 
     void InputLayer::On(const KeyEvent &event)
     {

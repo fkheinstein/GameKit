@@ -19,8 +19,7 @@ namespace fts
     class  Texture
     {
     public:
-        static Ref<Texture> Create(int width, int height, int depth,
-                                   MultiSampleLevel samples, TextureType type,
+        static Ref<Texture> Create(int width, int height, int depth, MultiSampleLevel samples, TextureType type,
                                    DataFormat format, TextureParameter params = {},
                                    int32_t mipmap_levels = 0);
 

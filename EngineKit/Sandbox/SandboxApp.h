@@ -6,7 +6,7 @@
 
 namespace app01
 {
-    class SandboxApp : public fts::Application 
+    class SandboxApp : public fts::Application
     {
 
     public:
