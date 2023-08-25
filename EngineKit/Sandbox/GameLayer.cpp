@@ -18,7 +18,12 @@ namespace app01
 
     void GameLayer::OnTick(float dt) {}
     void GameLayer::OnRender() {}
-    void GameLayer::OnImGui() {}
+    void GameLayer::OnImGui() {
+    
+        ImGui::Begin("GameLayer Example");
+        ImGui::Text("Version 1.0v");
+        ImGui::End();
+    }
 
 
     void GameLayer::Quit() {
