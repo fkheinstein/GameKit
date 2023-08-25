@@ -9,7 +9,7 @@ namespace app01
 
     GameLayer::GameLayer(fts::InputDevice* input, /*SceneManager* scenes, ResourceManager* resources,*/ fts::GraphicsLayer* graphics_layer
         , int width, int height)
-        : fts::Layer("EditorLayer")
+        : fts::Layer("GameLayer")
         , m_graphics_layer(graphics_layer)
         , m_quitting(false)
     {
