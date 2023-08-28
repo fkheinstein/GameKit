@@ -22,8 +22,8 @@ namespace fts
         Layer(const Layer&&) = delete;
         Layer& operator=(const Layer&&) = delete;
 
-        virtual void OnPush() {}
-        virtual void OnPop() {}
+        virtual void OnPush() {}  //onAttach
+        virtual void OnPop() {} //onDetach
 
         virtual void OnTick(float) {}
 
