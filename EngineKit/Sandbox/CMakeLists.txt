@@ -18,10 +18,8 @@ if (MSVC)
 endif()
 
 
-
 include_directories(${Engine_DIR})
 include_directories(${INCLUDE_OUTPUT_PATH})
-
 
 
 include_directories("${DEPS_DIR}/src/glew-cmake/include")

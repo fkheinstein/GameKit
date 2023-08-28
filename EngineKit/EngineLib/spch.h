@@ -26,7 +26,7 @@
 #include <map>
 #include <cassert>
 #include <tuple>
-
+#include <stack> 
 #include <stdexcept>
 
 //C++17
