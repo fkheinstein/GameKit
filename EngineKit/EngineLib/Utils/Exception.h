@@ -12,9 +12,7 @@ namespace fts
     {
     public:
         Exception(void) throw() {}
-
         Exception(std::string msg) throw() : std::string(std::move(msg)) {}
-
         virtual ~Exception(void) throw() {}
 
         virtual const char *what(void) const throw() { return c_str(); }
@@ -23,10 +21,8 @@ namespace fts
     class FileException : public Exception
     {
     public:
-        FileException(const std::string_view &file_path,
-                      const std::string_view &msg) throw()
-            : Exception(fmt::format("File exception from \"{}\", error: {}",
-                                    file_path, msg))
+        FileException(const std::string_view &file_path, const std::string_view &msg) throw()
+            : Exception(fmt::format("File exception from \"{}\", error: {}", file_path, msg))
         {
         }
 
