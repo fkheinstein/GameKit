@@ -9,7 +9,7 @@ namespace fts
 {
 class  ModelLoader {
    public:
-  //  Ref<Model> Load(const std::string_view &path);
+    Ref<Model> Load(const std::string_view &path);
 };
 
 } // namespace fts

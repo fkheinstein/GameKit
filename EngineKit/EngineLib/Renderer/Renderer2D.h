@@ -3,7 +3,12 @@
 
 
 #include "Renderer/Renderer.h"
-//#include "Resource/Resource.hpp"
+#include "Resource/Resource.h"
+
+
+# ifdef _WIN32
+# undef DrawText
+# endif
 
 namespace fts
 {
@@ -11,7 +16,7 @@ namespace fts
 
     class Font;
     class Texture;
-    class ShaderCache;
+    //class ShaderCache;
 
     class  Renderer2D : protected Renderer 
     {
@@ -43,7 +48,7 @@ namespace fts
         static void DrawBillboard(const Texture& texture, const glm::vec3& pos,
             const glm::vec2& scale, const glm::vec4& color = glm::vec4(1.0f), uint32_t entity_id = -1);
 
-        static void DrawTextFont(const Font& font, const std::string& text, const glm::mat4& transform, const glm::vec4& color = glm::vec4(1.0f),  uint32_t entity_id = -1);
+        static void DrawText(const Font& font, const std::string& text, const glm::mat4& transform, const glm::vec4& color = glm::vec4(1.0f),  uint32_t entity_id = -1);
         static void DrawCircle(const glm::vec3& pos, const glm::vec2& scale, const glm::vec4& color, float thickness, float fade, uint32_t entity_id = -1);
         static void DrawCircle(const glm::mat4& transform, const glm::vec4& color, float thickness, float fade,  uint32_t entity_id = -1);
 

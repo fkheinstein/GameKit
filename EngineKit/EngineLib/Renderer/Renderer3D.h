@@ -20,6 +20,7 @@ namespace fts
         static void Init();
         static void Reset();
         static std::string GetDebugInfo();
+
         static void SetCascadeShadow(const CascadeShadow& shadow);
         static void BindCascadeShadow(Shader& shader);
 

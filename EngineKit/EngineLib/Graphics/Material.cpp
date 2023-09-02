@@ -1,0 +1,45 @@
+#include <spch.h>
+
+#include "Graphics/Texture.h"
+#include "Graphics/Material.h"
+
+
+namespace fts
+{
+const std::string GetMaterialName(MaterialType type)
+{
+    static const std::unordered_map<MaterialType, std::string>
+        stringByMaterialType =
+        {
+            {MaterialType::Ambient, "Ambient"},
+            {MaterialType::Diffuse, "Diffuse"},
+            {MaterialType::Specular, "Specular"},
+            {MaterialType::Emissive, "Emissive"},
+            {MaterialType::Normal, "Normal"},
+            {MaterialType::Shininess, "Shininess"},
+        };
+    return stringByMaterialType.at(type);
+}
+
+Material::Material()
+    : m_diffuse_base(1.0), m_ambient_base(1.0), m_emissive_base(0)
+{
+}
+
+void Material::SetTexture(MaterialType type, Texture* texture)
+{
+    m_textures[type] = texture;
+}
+
+const Texture* Material::GetTexture(MaterialType type) const
+{
+    if (m_textures.count(type) == 0) {
+        return nullptr;
+    }
+    else {
+        return m_textures.at(type);
+    };
+}
+
+} // namespace fts
+

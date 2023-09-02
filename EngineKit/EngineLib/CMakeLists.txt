@@ -27,6 +27,7 @@ include_directories("${DEPS_DIR}/src/FastDelegate")
 
 
 
+
 include_directories("${DEPS_DIR}/vendor/glad/include")
 include_directories("${DEPS_DIR}/vendor/FMOD/core/inc")
 include_directories("${DEPS_DIR}/vendor/FMOD/fsbank/inc")
@@ -34,6 +35,7 @@ include_directories("${DEPS_DIR}/vendor/FMOD/studio/inc")
 
 include_directories("${DEPS_DIR}/src/freetype/include")
 include_directories("${DEPS_DIR}/src/freetype-gl")
+
 
 
 include_directories("${DEPS_DIR}/src/SDL2/include")

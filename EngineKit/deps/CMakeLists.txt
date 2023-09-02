@@ -11,11 +11,13 @@ if((NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.bootstrap.json") OR ("${CMAKE_CURRE
 endif()
 
 
+#set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries")
 
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
 set(GLFW_INSTALL OFF CACHE BOOL "")
+
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glew-cmake")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glfw")
 
@@ -23,14 +25,13 @@ set(ASSIMP_BUILD_ZLIB ON CACHE BOOL "" FORCE)
 set(ASSIMP_NO_EXPORT ON CACHE BOOL "")
 set(ASSIMP_BUILD_DRACO OFF CACHE BOOL "")
 
+
 set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "")
 set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "")
 set(ASSIMP_INSTALL_PDB OFF CACHE BOOL "")
 set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF CACHE BOOL "")
 set(ASSIMP_BUILD_OBJ_IMPORTER ON CACHE BOOL "")
 set(ASSIMP_BUILD_GLTF_IMPORTER ON CACHE BOOL "")
-
-
 
 
 set(FREETYPE_INCLUDE_DIRS       "${DEPS_DIR}/src/freetype/include")
@@ -48,11 +49,7 @@ set(LIBTYPE STATIC)
 
 
 
-
 set(CMAKE_MODULE_PATH  ${ENGINEKit_MODULE_PATH})
-
-
-
 
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glm")
@@ -62,12 +59,10 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/assimp")
 
 #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/openal-soft")
 #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/freetype")
-
-
 #add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdf-atlas-gen/msdfgen")
 
-  # This project is tested using GoogleTest.
-  add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/googletest")
+#This project is tested using GoogleTest.
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/googletest")
 
 
 

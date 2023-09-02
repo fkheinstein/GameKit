@@ -30,8 +30,8 @@ using ImageCache = ResourceCache<ByteImage, Loader<ImageLoader>>;
 using TextureHandle = ResourceHandle<Texture>;
 using TextureCache = ResourceCache<Texture, Loader<TextureLoader>>;
 
-//using ModelHandle = ResourceHandle<Model>;
-//using ModelCache = ResourceCache<Model, Loader<ModelLoader>>;
+using ModelHandle = ResourceHandle<Model>;
+using ModelCache = ResourceCache<Model, Loader<ModelLoader>>;
 
 using ShaderCache = ResourceCache<Shader, Loader<ShaderLoader>>;
 using ShaderHandle = ResourceHandle<Shader>;
