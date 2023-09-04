@@ -10,6 +10,7 @@ if (MSVC)
 endif()
 
 
+
 include_directories(${INCLUDE_OUTPUT_PATH})
 include_directories(${Engine_DIR})
 
@@ -25,6 +26,8 @@ include_directories("${DEPS_DIR}/src/stb")
 include_directories("${DEPS_DIR}/src/stduuid/include")
 include_directories("${DEPS_DIR}/src/FastDelegate")
 
+include_directories("${DEPS_DIR}/src/LuaBridge/Source")
+include_directories("${DEPS_DIR}/src/Lua/src")
 
 
 

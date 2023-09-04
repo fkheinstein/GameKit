@@ -5,7 +5,7 @@
 #include "Graphics/Framebuffer.h"
 #include "Graphics/Camera.h"
 
-//#include "Utility/Transform.h"
+#include "Utils/Transform.h"
 
 #include <vector>
 
@@ -57,7 +57,7 @@ namespace fts
 
     static glm::mat4 GetLightSpaceMatrix(const Transform& transform, const glm::mat4& projection_view)
     {
-        /* glm::vec3 center(0);
+         glm::vec3 center(0);
          auto corners = GetFrustumCorners(projection_view);
          for (const auto& c : corners) {
              center += glm::vec3(c);
@@ -88,22 +88,22 @@ namespace fts
          max_z = max_z < 0 ? max_z / z_mult : max_z * z_mult;
          const auto& light_proj =  glm::ortho(min_x, max_x, min_y, max_y, min_z, max_z);
 
-         return light_proj * light_view;*/
+         return light_proj * light_view;
 
         return glm::mat4(1.0f);
     }
 
     void CascadeShadow::ComputeCascadeLightMatrix(const Transform& transform, const Camera& camera)
     {
-        /*const float fov = camera.GetFOV();
-        const float aspect = camera.GetNearWidth() / camera.GetNearHeight();
-        const uint32_t size = m_cascade_planes.size();
-        m_projection_views.resize(size);
-        for (uint32_t i = 0; i < size; ++i) {
-            const float near_plane =  i == 0 ? camera.GetNearZ() : m_cascade_planes[i - 1];
-            const float far_plane = m_cascade_planes[i];
-            m_projection_views[i] = GetLightSpaceMatrix(transform, glm::perspective(fov, aspect, near_plane, far_plane) * camera.GetView());
-        }*/
+        // const float fov = camera.GetFOV();
+        // const float aspect = camera.GetNearWidth() / camera.GetNearHeight();
+        // const uint32_t size = m_cascade_planes.size();
+        // m_projection_views.resize(size);
+        // for (uint32_t i = 0; i < size; ++i) {
+        //     const float near_plane =  i == 0 ? camera.GetNearZ() : m_cascade_planes[i - 1];
+        //     const float far_plane = m_cascade_planes[i];
+        //     m_projection_views[i] = GetLightSpaceMatrix(transform, glm::perspective(fov, aspect, near_plane, far_plane) * camera.GetView());
+        // }
     }
 
 } // namespace fts

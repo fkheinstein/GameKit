@@ -39,14 +39,22 @@
 
 
     {
-        "name": "SGLMemory",
+        "name": "Lua",
         "source": {
-            "type": "git",
-            "url": "https://github.com/heinsteinh/SGLMemory.git",
-            "revision": "61aaf79a7e1f441985d56c542d461db04a634f69"
+            "type": "archive",
+            "url": "http://www.lua.org/ftp/lua-5.4.6.tar.gz",
+            "revision": "5.4.6"
         }
     },
 
+    {
+        "name": "LuaBridge",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vinniefalco/LuaBridge.git",
+            "revision": "6580b18755a0fdbf87820aa16a3bc63d24b5bf31"
+        }
+    },
 
 
     {
@@ -143,23 +151,6 @@
         }
     },
 
-    {
-        "name": "glslang",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/KhronosGroup/glslang.git",
-            "revision": "6fe560f74f472726027e4059692c6eb1e7d972dc"
-        }
-    },
-
-    {
-        "name": "meshoptimizer",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/zeux/meshoptimizer",
-            "revision": "v0.16"
-        }
-    },
 
     {
         "name": "freetype",
@@ -204,35 +195,5 @@
             "url": "https://github.com/dreamcat4/FastDelegate.git",
             "revision": "e46c00b19f21f834dabe7c0ee870a55f84bab3d4"
         }
-    },
-
-
-    {
-        "name": "dds-ktx",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/septag/dds-ktx.git",
-            "revision": "42dd8aa6ded90b1ec06091522774feff51e83fc5"
-        }
-    },
-
-
-    {
-        "name": "msdfgen",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Chlumsky/msdfgen.git",
-            "revision": "7ff249bcd4da6678c5779d9664633c039fb50c0a"
-        }
-    },
-
-    {
-        "name": "msdf-atlas-gen",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Chlumsky/msdf-atlas-gen.git",
-            "revision": "b5d54f301237bfcdfb888936ddba48ae3c878cc7"
-        }
     }
-
 ]

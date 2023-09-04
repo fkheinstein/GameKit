@@ -13,10 +13,15 @@ endif()
 
 #set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries")
 
+
+
+
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
 set(GLFW_INSTALL OFF CACHE BOOL "")
+
+
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glew-cmake")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glfw")
@@ -57,47 +62,23 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/spdlog")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/entt")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/assimp")
 
-#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/openal-soft")
-#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/freetype")
-#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdf-atlas-gen/msdfgen")
-
 #This project is tested using GoogleTest.
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/googletest")
 
 
-
-
-set(MSDFGEN_CORE_ONLY ON)
-set(MSDFGEN_BUILD_STANDALONE OFF)
-set(MSDFGEN_USE_VCPKG OFF)
-set(MSDFGEN_INSTALL ON)
-set(MSDFGEN_USE_SKIA OFF)
-
-set(MSDFGEN_CORE_ONLY ON CACHE BOOL "")
-set(MSDFGEN_BUILD_STANDALONE OFF CACHE BOOL "")
-set(MSDFGEN_USE_VCPKG OFF CACHE BOOL "")
-set(MSDFGEN_INSTALL ON CACHE BOOL "")
-set(MSDFGEN_USE_SKIA OFF CACHE BOOL "")
-
-#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdfgen")
-#add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/msdf-atlas-gen")
-
+ 
+set(LUABRIDGE_TESTING OFF CACHE BOOL "")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/LuaBridge")
 
 
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/freetype")
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Lua")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/ImGuizmo")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Freetype-GL")
 
-
-#set_property(TARGET msdf-atlas-gen          PROPERTY FOLDER "ThirdPartyLibraries")
-#set_property(TARGET msdf-atlas-gen-standalone          PROPERTY FOLDER "ThirdPartyLibraries")
-#set_property(TARGET msdfgen          PROPERTY FOLDER "ThirdPartyLibraries")
-#set_property(TARGET msdfgen-core          PROPERTY FOLDER "ThirdPartyLibraries")
-#set_property(TARGET msdfgen-ext          PROPERTY FOLDER "ThirdPartyLibraries")
-
-
 #set_property(TARGET common          PROPERTY FOLDER "ThirdPartyLibraries")
-#set_property(TARGET OpenAL          PROPERTY FOLDER "ThirdPartyLibraries")
+
+set_property(TARGET LuaBridge          PROPERTY FOLDER "ThirdPartyLibraries")
 
 
 set_property(TARGET gtest_main          PROPERTY FOLDER "ThirdPartyLibraries")

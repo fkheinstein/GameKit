@@ -30,6 +30,10 @@ include_directories("${DEPS_DIR}/src/SDL2_ttf/include")
 include_directories("${DEPS_DIR}/src/freetype-gl")
 
 
+include_directories("${DEPS_DIR}/src/LuaBridge/Source")
+include_directories("${DEPS_DIR}/src/Lua/src")
+
+
 link_directories(${LIBRARY_OUTPUT_PATH})
 
 link_directories("${DEPS_DIR}/src/SDL2/lib/x64")

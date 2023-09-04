@@ -32,6 +32,10 @@ include_directories("${DEPS_DIR}/src/stduuid/include")
 include_directories("${DEPS_DIR}/src/FastDelegate")
 
 
+include_directories("${DEPS_DIR}/src/LuaBridge/Source")
+include_directories("${DEPS_DIR}/src/Lua/src")
+
+
 include_directories("${DEPS_DIR}/src/SDL2/include")
 include_directories("${DEPS_DIR}/src/SDL2_image/include")
 include_directories("${DEPS_DIR}/src/SDL2_mixer/include")
