@@ -16,6 +16,9 @@
 #include "Renderer2D.h"
 
 
+#include <Utils/ResourcePath.h>
+
+
 namespace fts {    
 
     struct LineVertex {
@@ -115,9 +118,7 @@ namespace fts {
     void Renderer2D::Init(ShaderCache& shaders)
     {
         // Initializing line vbo
-        s_2d_data.line_vbo = VertexBuffer::Create(
-            s_2d_data.line_buffer.data(),
-            s_2d_data.line_buffer.size() * sizeof(Line), BufferIOType::Dynamic);
+        s_2d_data.line_vbo = VertexBuffer::Create(s_2d_data.line_buffer.data(), s_2d_data.line_buffer.size() * sizeof(Line), BufferIOType::Dynamic);
 
         // Initializing line vao
         VertexBufferLayout layout;
@@ -161,9 +162,7 @@ namespace fts {
         s_2d_data.quad_vao->BindIndexBuffer(*s_2d_data.quad_ibo);
 
         // Initialize circle vbo
-        s_2d_data.circle_vbo = VertexBuffer::Create(
-            s_2d_data.circle_buffer.data(),
-            s_2d_data.circle_buffer.size() * sizeof(Circle), BufferIOType::Dynamic);
+        s_2d_data.circle_vbo = VertexBuffer::Create(s_2d_data.circle_buffer.data(), s_2d_data.circle_buffer.size() * sizeof(Circle), BufferIOType::Dynamic);
 
         // Initialize circle vao
         layout.Clear();
@@ -188,14 +187,9 @@ namespace fts {
 
         s_2d_data.texture_slots[0] = s_2d_data.default_texture.get();
 
-        s_line_shader = shaders.Load("shader/line", "assets/shaders/line.vert.glsl",
-            "assets/shaders/line.frag.glsl");
-        s_texture_shader =
-            shaders.Load("shader/texture_quad", "assets/shaders/texture.vert.glsl",
-                "assets/shaders/texture.frag.glsl");
-        s_cirlce_shader =
-            shaders.Load("shader/circle", "assets/shaders/circle.vert.glsl",
-                "assets/shaders/circle.frag.glsl");
+        s_line_shader = shaders.Load("shader/line", fts::getPathRelativeRoot("Shaders/line.vert.glsl"), fts::getPathRelativeRoot("Shaders/line.frag.glsl"));
+        s_texture_shader =   shaders.Load("shader/texture_quad", fts::getPathRelativeRoot("Shaders/texture.vert.glsl"), fts::getPathRelativeRoot("Shaders/texture.frag.glsl"));
+        s_cirlce_shader =  shaders.Load("shader/circle", fts::getPathRelativeRoot("Shaders/circle.vert.glsl"), fts::getPathRelativeRoot("Shaders/circle.frag.glsl"));
 
         Renderer::BindCamera(*s_line_shader);
         Renderer::BindCamera(*s_cirlce_shader);

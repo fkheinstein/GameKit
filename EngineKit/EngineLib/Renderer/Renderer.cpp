@@ -152,10 +152,8 @@ namespace fts
 
             VertexBufferLayout layout;
             layout.Push(BufferLayoutType::Float3);
-            s_data.box_vbo = VertexBuffer::Create(box_vert, sizeof(box_vert),
-                BufferIOType::Static);
-            s_data.box_ibo =
-                IndexBuffer::Create(box_indices, 36, BufferIOType::Static);
+            s_data.box_vbo = VertexBuffer::Create(box_vert, sizeof(box_vert), BufferIOType::Static);
+            s_data.box_ibo = IndexBuffer::Create(box_indices, 36, BufferIOType::Static);
             s_data.box_vao->AddBufferLayout(layout);
             s_data.box_vao->BindVertexBuffer(*s_data.box_vbo, 0);
             s_data.box_vao->BindIndexBuffer(*s_data.box_ibo);
