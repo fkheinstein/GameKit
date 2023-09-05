@@ -13,7 +13,7 @@ namespace app01
 {
 
 
-    SandboxApp::SandboxApp(/* args */) : Application("Basic Application", fts::Device::API::OpenGL) 
+    SandboxApp::SandboxApp() : Application("Basic Application", fts::Device::API::OpenGL) 
     {
     }
 
@@ -28,7 +28,7 @@ namespace app01
         CreateImGuiLayer();
         
         m_graphics_layer->SetDebug(true);
-        PushLayer(CreateLayer<GameLayer>(&m_input,/* &m_scenes, &m_resources, */ m_graphics_layer, viewport_width, viewport_height));
+        PushLayer(CreateLayer<GameLayer>(&m_input, &m_scenes, &m_resources, m_graphics_layer, viewport_width, viewport_height));
     }
 
     void SandboxApp::OnDestroy() 

@@ -21,7 +21,7 @@ namespace fts
         RegisterComponent<DirectionalLightComponent>();
         RegisterComponent<PointLightComponent>();
         RegisterComponent<TextComponent>();
-        RegisterComponent<CameraComponent>();
+        //RegisterComponent<CameraComponent>();
         RegisterComponent<SpriteComponent>();
 
         //RegisterComponent<SpriteAnimationComponent>();

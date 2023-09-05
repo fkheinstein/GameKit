@@ -11,7 +11,7 @@ namespace app01
 
     class GameLayer : public fts::Layer {
     public:
-        GameLayer(fts::InputDevice* input, /*SceneManager* scenes, ResourceManager* resources,*/ fts::GraphicsLayer* graphics_layer, int width, int height);
+        GameLayer(fts::InputDevice* input, fts::SceneManager* scenes, fts::ResourceManager* resources, fts::GraphicsLayer* graphics_layer, int width, int height);
         ~GameLayer()= default;
 
         void OnTick(float dt) override;
@@ -19,16 +19,30 @@ namespace app01
         void OnImGui() override;
 
 
+
     private:
         void Quit();
         bool m_quitting;
+
+
     private:
         void On(const fts::KeyEvent& e) override;
         void On(const fts::AppQuitEvent& e) override;
         void On(const fts::MouseMotionEvent& e) override;
         void On(const fts::MouseButtonEvent& e) override;
-        
+
+
         fts::GraphicsLayer* m_graphics_layer;
+        fts::SceneManager* m_scenes;
+        fts::ResourceManager* m_resources;
+
+        glm::ivec2 m_viewport_pos;
+        glm::ivec2 m_viewport_size;
+
+
+
+        Ref<fts::Framebuffer> m_viewport_target;
+        Ref<fts::Texture> m_scene_buffer;
     };
 } // namespace app01
 

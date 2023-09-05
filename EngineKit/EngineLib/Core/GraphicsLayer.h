@@ -5,6 +5,8 @@
 #include "Graphics/Graphics.h"
 #include "Utils/Timing.h"
 
+#include <Resource/Resource.h>
+#include <Resource/ResourceManager.h>
 
 namespace fts
 {
@@ -13,10 +15,12 @@ namespace fts
     class Device;
     class Texture;
     class Camera;
+    class SceneManager;
+    class ResourceManager;
     class GraphicsLayer : public Layer
     {
     public:
-        GraphicsLayer(/*ResourceManager *resources, SceneManager *scenes, */ Device *device, int32_t width, int32_t height, MultiSampleLevel msaa);
+        GraphicsLayer(ResourceManager *resources, SceneManager* scenes, Device *device, int32_t width, int32_t height, MultiSampleLevel msaa);
         void OnImGui() override;
         void OnRender() override;
         void OnTick(float dt) override;
@@ -34,8 +38,8 @@ namespace fts
     private:
         void InitBuffers();
     
-        //ResourceManager* m_resources;
-        //SceneManager* m_scenes;
+        ResourceManager* m_resources;
+        SceneManager* m_scenes;
         Device* m_device;
         int32_t m_width;
         int32_t m_height;
@@ -48,15 +52,13 @@ namespace fts
         int32_t m_color_output_attachment;
 
         Ref<Renderbuffer> m_depth_buffer;
-
-        //TextureHandle m_light_icon;
+        TextureHandle m_light_icon;
 
         Camera* m_camera;
         FPSCounter m_fps;
         float m_deferred_time;
         float m_post_rendering_time;
     };
-
 
 } // namespace fts
 

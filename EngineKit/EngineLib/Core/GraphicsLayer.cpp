@@ -7,17 +7,26 @@
 #include "Graphics/Device.h"
 #include "Graphics/Texture.h"
 #include "Graphics/Framebuffer.h"
+#include "Graphics/Shader.h"
+
 #include "Graphics/Renderbuffer.h"
+
+#include <Renderer/Renderer.h>
+#include <Renderer/Renderer2D.h>
+#include <Renderer/Renderer3D.h>
+
+
+#include "ECS/Component.h"
+#include "ECS/SceneManager.h"
 
 
 
 namespace fts {
 
-    GraphicsLayer::GraphicsLayer(/*ResourceManager *resources, SceneManager *scenes, */ Device* device,
-        int32_t width, int32_t height, MultiSampleLevel msaa)
+    GraphicsLayer::GraphicsLayer(ResourceManager *resources, SceneManager *scenes,Device* device, int32_t width, int32_t height, MultiSampleLevel msaa)
         : Layer("GraphicsLayer")
-        //, m_resources(resources)
-        //, m_scenes(scenes)
+        , m_resources(resources)
+        , m_scenes(scenes)
         , m_device(device)
         , m_width(width)
         , m_height(height)
@@ -26,9 +35,16 @@ namespace fts {
         , m_color_output_attachment(0)
         , m_fps(20)
     {
-
         m_main_target = Framebuffer::Create();
+
         InitBuffers();
+
+
+        Renderer::Init(m_device);
+        Renderer2D::Init(m_resources->shaders);
+        Renderer3D::Init();
+
+        m_light_icon = m_resources->textures.Get("icon/light");
     }
 
 
@@ -49,11 +65,30 @@ namespace fts {
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glClearColor(0.0f, 1.0f, 0.0f, 0.0f);
+
+
+        Scene* scene = m_scenes->GetCurrentScene();
+        TransformComponent transformComp;
+        CameraComponent cameraComp;
+
+        // update camera transform
+        auto view = scene->view<CameraComponent, TransformComponent>();
+        view.each([&](CameraComponent& camComp, TransformComponent& trans) {
+            //camComp.camera.SetWorldTransform(trans.GetWorldTransform().GetMatrix());
+            cameraComp = camComp;
+            transformComp = trans;
+            });
+
+
+        if (cameraComp.camera == nullptr) 
+        {
+        //    FTS_ASSERT_MSG(false, "Camera cannot be null");
+        }
+
+
     }
 
     void GraphicsLayer::OnTick(float dt) {
-
-
 
         // main render pipeline
         m_deferred_time = 0;

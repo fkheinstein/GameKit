@@ -5,19 +5,18 @@
 
 namespace fts
 {
-class  ResourceManager {
-   public:
-    ResourceManager() = default;
-    ~ResourceManager() = default;
+    class ResourceManager 
+    {
+    public:
+        ResourceManager() = default;
+        ~ResourceManager() = default;
 
-    ImageCache images;
 
-    TextureCache textures;
-
-    //ModelCache models;
-
-    ShaderCache shaders;
-};
+        ImageCache images;
+        TextureCache textures;
+        ModelCache models;
+        ShaderCache shaders;
+    };
 
 } // namespace fts
 

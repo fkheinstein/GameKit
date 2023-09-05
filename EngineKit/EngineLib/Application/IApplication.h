@@ -9,7 +9,8 @@
 
 #include "Graphics/Device.h"
 #include "Core/InputDevice.h"
-
+#include "ECS/SceneManager.h"
+#include "Resource/ResourceManager.h"
 #include "Utils/Init.h"
 
 #include <filesystem>
@@ -86,12 +87,10 @@ namespace fts
         Scope<Window> m_window;
         Scope<Device> m_device;
 
-        /*
         ResourceManager m_resources;
         SceneManager m_scenes;
-        */
-        GraphicsLayer* m_graphics_layer;
         InputDevice m_input;
+        GraphicsLayer* m_graphics_layer;
 
     private:
         ImGuiLayer* m_imgui_layer;

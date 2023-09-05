@@ -29,6 +29,10 @@
 #include <stack> 
 #include <stdexcept>
 
+
+#include <random>
+#include <unordered_map>
+
 //C++17
 #include <cstdint>
 #include <string_view>

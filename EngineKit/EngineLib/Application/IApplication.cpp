@@ -1,12 +1,23 @@
 #include <spch.h>
 
-
 #include "IApplication.h"
 
 #include "Core/InputDevice.h"
 #include "Core/InputLayer.h"
 #include "Core/ScriptLayer.h"
 #include "Core/GraphicsLayer.h"
+
+
+#include "Utils/ResourcePath.h"
+
+
+#if (FTS_PLATFORM_LINUX)
+#include <unistd.h>
+#endif
+
+#if (FTS_PLATFORM_WINDOWS)
+#include <libloaderapi.h>
+#endif
 
 namespace fts
 {
@@ -30,15 +41,44 @@ namespace fts
         LoadSettingsFile();
 
         WindowCreateInfo property{ title,
-                                  m_settings.GetInteger("window", "width", 800),
-                                  m_settings.GetInteger("window", "height", 600),
+                                  m_settings.GetInteger("window", "width", 1024),
+                                  m_settings.GetInteger("window", "height", 768),
                                   static_cast<MultiSampleLevel>(m_settings.GetInteger("window", "msaa", 4)),
                                   m_settings.GetBoolean("window", "vsync", true) };
 
         m_window = Window::Create(property);
         m_device = Device::Create();
 
+        // TODO: Loading default assets.
+        // Should move this to a asset table file, so we can load asset dynamically
+        {
+            TextureParameter icon_params{
+                TextureWrap::Repeat, TextureMinFilter::Linear,
+                TextureMagFilter::Linear, MipmapMode::Linear };
 
+            auto iconPath = fts::getPathRelativeRoot("icon/light.png");
+            m_resources.textures.Load("icon/light", getPathRelativeRoot("icons/light.png"), icon_params);
+            m_resources.textures.Load("icon/file", getPathRelativeRoot("icons/peak.png"),  icon_params);
+
+            //m_resources.textures.Load("icon/directory", "assets/icons/DirectoryIcon.png", icon_params);
+
+            m_resources.textures.Load("skybox/default",
+                std::array<std::string_view, 6>{
+                    //getPathRelativeRoot("Skyboxs/Skybox0/right.jpg"),
+                    //getPathRelativeRoot("Skyboxs/Skybox0/left.jpg"),
+                    //getPathRelativeRoot("Skyboxs/Skybox0/top.jpg"),
+                    //getPathRelativeRoot("Skyboxs/Skybox0/bottom.jpg"),
+                    //getPathRelativeRoot("Skyboxs/Skybox0/front.jpg"),
+                    //getPathRelativeRoot("Skyboxs/Skybox0/back.jpg"),
+
+                    fts::getPathRelativeRoot("Skybox/posx.jpg").c_str(),
+                    fts::getPathRelativeRoot("Skybox/negx.jpg").c_str(),
+                    fts::getPathRelativeRoot("Skybox/posy.jpg").c_str(),
+                    fts::getPathRelativeRoot("Skybox/negy.jpg").c_str(),
+                    fts::getPathRelativeRoot("Skybox/posz.jpg").c_str(),
+                    fts::getPathRelativeRoot("Skybox/negz.jpg").c_str()
+            });
+        }
     }
 
 
@@ -46,7 +86,7 @@ namespace fts
 
     void Application::OnInit()
     {
-        m_graphics_layer = CreateLayer<GraphicsLayer>( /* &m_resources, &m_scenes,*/ m_device.get(), m_window->GetWidth(), m_window->GetHeight(), m_window->GetMSAA());
+        m_graphics_layer = CreateLayer<GraphicsLayer>(  &m_resources, &m_scenes, m_device.get(), m_window->GetWidth(), m_window->GetHeight(), m_window->GetMSAA());
         PushLayer(m_graphics_layer);
 
         PushLayer(CreateLayer<ScriptLayer>());

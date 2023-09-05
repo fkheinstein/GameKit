@@ -115,14 +115,12 @@ namespace fts
     };
 
     struct CameraComponent {
-        /*Camera camera;
+        Camera* camera{nullptr};
         bool primary{ true };
-        CameraComponent() = default;
-        CameraComponent(CameraType type, float fov, float width, float height,  float near_z, float far_z)
-            : camera(type, fov, width, height, near_z, far_z)
+        CameraComponent() = default;        
+        CameraComponent(float fov, float width, float height,  float near_z, float far_z) //: camera(type, fov, width, height, near_z, far_z)
         {
-        }*/
-
+        }
     };
 
     struct SpriteFrame {
