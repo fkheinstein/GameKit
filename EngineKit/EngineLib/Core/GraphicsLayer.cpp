@@ -82,8 +82,21 @@ namespace fts {
 
         if (cameraComp.camera == nullptr) 
         {
-        //    FTS_ASSERT_MSG(false, "Camera cannot be null");
+            FTS_ASSERT_MSG(false, "Camera cannot be null");
         }
+
+
+        Renderer::BeginRenderPass({ m_main_target.get(), m_width, m_height });
+        Renderer::SetCamera(*m_camera);
+
+        uint32_t id = static_cast<uint32_t>(entt::null);
+        m_main_target->ClearAttachment(1, &id);
+
+
+        // main render pipeline
+        m_deferred_time = 0;
+        m_post_rendering_time = 0;
+        Clock clock;
 
 
     }

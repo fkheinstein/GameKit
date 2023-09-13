@@ -24,7 +24,7 @@
 #include <SDL.h>
 
 #ifdef DEBUG_BUILD
-#define SDL(stmt) FTS_ASSERT(stmt == 0, SDL_GetError())
+#define SDL(stmt) FTS_ASSERT_MSG(stmt == 0, SDL_GetError())
 #else
 #define SDL(stmt) stmt
 #endif
@@ -55,10 +55,10 @@ namespace fts {
         m_window = SDL_CreateWindow(info.title.c_str(), SDL_WINDOWPOS_CENTERED,  SDL_WINDOWPOS_CENTERED
             , info.width, info.height, sdl_flags);
 
-        FTS_ASSERT(m_window != nullptr, SDL_GetError());
+        FTS_ASSERT_MSG(m_window != nullptr, SDL_GetError());
 
         m_context = SDL_GL_CreateContext(m_window);
-        FTS_ASSERT(m_context != nullptr, SDL_GetError());
+        FTS_ASSERT_MSG(m_context != nullptr, SDL_GetError());
 
         SDL(SDL_GL_SetSwapInterval(info.vsync ? 1 : 0));
     }

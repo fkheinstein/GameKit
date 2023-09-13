@@ -91,8 +91,7 @@ add_library(${PROJ_NAME}
        # ${Engine_DIR}/Utils/glm.natvis
         )
 
-target_link_libraries(${PROJ_NAME}  SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog
-                                    freetype-gl fmod_vc fmodstudio_vc)
+target_link_libraries(${PROJ_NAME}  SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog freetype-gl fmod_vc fmodstudio_vc)
 
 #target_link_libraries(${PROJ_NAME} SDL2 SDL2main libglew_static glfw imagehlp ImGui ImGuizmo assimp spdlog  freetype-gl fmod_vc fmodstudio_vc)
 

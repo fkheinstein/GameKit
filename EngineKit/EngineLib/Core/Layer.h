@@ -6,16 +6,14 @@
 
 namespace fts
 {
-
+    class Application;
+    class ResourceManager;
+    class SceneManager;
     class Layer
     {
     public:
-        Layer(const std::string &name) : m_name(name)
-        {
-            FTS_CORE_TRACE("Initializing layer: {}", name);
-        }
-
-        virtual ~Layer() { FTS_CORE_TRACE("Deleteing layer: {}", m_name); }
+        Layer(const std::string &name) ;
+        virtual ~Layer() ;
 
         Layer(const Layer&) = delete;
         Layer& operator=(const Layer&) = delete;
@@ -39,11 +37,21 @@ namespace fts
         virtual void OnImGui() {}
 
         const std::string &GetName() const { return m_name; }
+        const SceneManager& GetSceneManager()const { return mSceneManager; }
+
+    	bool IsEnabled ;
+        
+    protected:
+        Application& mApp;
+        SceneManager& mSceneManager;
+        ResourceManager& mResource;
+        
 
     private:
         friend class Application;
-
         std::string m_name;
+
+
     };
 
 } // namespace fts

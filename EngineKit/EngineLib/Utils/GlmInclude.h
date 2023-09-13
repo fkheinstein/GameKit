@@ -2,25 +2,7 @@
 #define __GLMINCLUDE_H__
 
 
-
-#ifdef WIN32
-
-#ifdef _WIN32
-#ifndef NOMINMAX
-#define NOMINMAX // prevent windows redefining min/max
-#endif
-
-#ifndef WIN32_LEAN_AND_MEAN
-#define WIN32_LEAN_AND_MEAN
-#endif
-
-//#pragma comment( lib, "version.lib" )
-
-#include <windows.h>
-#endif //_WIN32
-
-
-#endif
+#include "OpenGLLibInclude.h"
 
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -45,7 +27,6 @@
 
 #include <glm/gtx/norm.hpp>
 #undef GLM_ENABLE_EXPERIMENTAL
-
 
 #include <glm/gtx/compatibility.hpp>
 

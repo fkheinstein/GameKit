@@ -45,7 +45,12 @@ namespace fts
 
         void Shutdown();
 
+
         Ini& GetSettings() { return m_settings; };
+        SceneManager& GetSceneManager() {return m_scenes;}
+        InputDevice& GetInput() {return m_input;}
+        ResourceManager& GetResourceManager() {return m_resources;}
+
 
     protected:
         virtual void OnInit();

@@ -73,8 +73,7 @@ namespace fts
         case aiPrimitiveType_POLYGON:
             return MeshTopology::Quads;
         default:
-            FTS_CORE_WARN("[ConvertAssimpPrimitive] Unknown mesh topology: {}!",
-                         type);
+            FTS_CORE_WARN("[ConvertAssimpPrimitive] Unknown mesh topology: {}!", (int)type);
             return MeshTopology::Triangles;
         };
     }
@@ -87,19 +86,13 @@ namespace fts
         for (uint32_t i = 0; i < assimpMesh->mNumVertices; ++i)
         {
             const aiVector3D pos = assimpMesh->mVertices[i];
-            const aiVector3D normal =
-                assimpMesh->HasNormals() ? assimpMesh->mNormals[i] : aiZeroVector;
-            const aiVector3D uv = assimpMesh->HasTextureCoords(0)
-                                      ? assimpMesh->mTextureCoords[0][i]
-                                      : aiZeroVector;
-            const aiVector3D tangent = assimpMesh->HasTangentsAndBitangents()
-                                           ? assimpMesh->mTangents[i]
-                                           : aiZeroVector;
-            const aiVector3D bi_tangent = assimpMesh->HasTangentsAndBitangents()
-                                              ? assimpMesh->mBitangents[i]
-                                              : aiZeroVector;
+            const aiVector3D normal = assimpMesh->HasNormals() ? assimpMesh->mNormals[i] : aiZeroVector;
+            const aiVector3D uv = assimpMesh->HasTextureCoords(0) ? assimpMesh->mTextureCoords[0][i] : aiZeroVector;
+            const aiVector3D tangent = assimpMesh->HasTangentsAndBitangents() ? assimpMesh->mTangents[i] : aiZeroVector;
+            const aiVector3D bi_tangent = assimpMesh->HasTangentsAndBitangents() ? assimpMesh->mBitangents[i] : aiZeroVector;
             vertices[i] = ConstructVertex(pos, uv, normal, tangent, bi_tangent);
         }
+
         for (uint32_t i = 0; i < assimpMesh->mNumFaces; ++i)
         {
             const aiFace &face = assimpMesh->mFaces[i];
@@ -108,9 +101,7 @@ namespace fts
                 indices.push_back(face.mIndices[j]);
             }
         }
-        model.AddMesh(Mesh(vertices, indices,
-                           ConvertAssimpPrimitive(static_cast<aiPrimitiveType>(
-                               assimpMesh->mPrimitiveTypes))));
+        model.AddMesh(Mesh(vertices, indices,  ConvertAssimpPrimitive(static_cast<aiPrimitiveType>(assimpMesh->mPrimitiveTypes))));
     }
 
     static inline TextureWrap ConvertAssimpMapMode(aiTextureMapMode mode)
@@ -126,7 +117,7 @@ namespace fts
         case aiTextureMapMode_Wrap:
             return TextureWrap::Repeat;
         default:
-            FTS_CORE_WARN("[ConvertAssimpMapMode] invalid wrap mode: {}!", mode);
+            FTS_CORE_WARN("[ConvertAssimpMapMode] invalid wrap mode: {}!", (int)mode);
             return TextureWrap::Repeat;
         }
     }

@@ -39,6 +39,19 @@
 
 #ifdef _WIN32
 
+
+
+#ifndef NOMINMAX
+#define NOMINMAX // prevent windows redefining min/max
+#endif
+
+#ifndef WIN32_LEAN_AND_MEAN
+#define WIN32_LEAN_AND_MEAN
+#endif
+
+#include <windows.h>
+
+
 #include "GL/glew.h"
 #include "GLFW/glfw3.h"
 
@@ -65,6 +78,27 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
+
+
+
+//#ifdef WIN32
+//
+//#ifdef _WIN32
+//#ifndef NOMINMAX
+//#define NOMINMAX // prevent windows redefining min/max
+//#endif
+//
+//#ifndef WIN32_LEAN_AND_MEAN
+//#define WIN32_LEAN_AND_MEAN
+//#endif
+//
+////#pragma comment( lib, "version.lib" )
+//
+//#include <windows.h>
+//#endif //_WIN32
+//
+//
+//#endif
 
 
 

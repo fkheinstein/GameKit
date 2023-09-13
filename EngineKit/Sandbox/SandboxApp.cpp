@@ -13,7 +13,7 @@ namespace app01
 {
 
 
-    SandboxApp::SandboxApp() : Application("Basic Application", fts::Device::API::OpenGL) 
+    SandboxApp::SandboxApp() : Application("Basic Application", fts::Device::API::OpenGL)
     {
     }
 

@@ -18,6 +18,8 @@ namespace app01
         void OnRender() override;
         void OnImGui() override;
 
+        void OnPush() override;
+        void OnPop() override;
 
 
     private:

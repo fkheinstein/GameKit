@@ -46,8 +46,18 @@ namespace fts
         FTS_ASSERT_MSG(glewInit() == GLEW_OK, "glewInit failed!");
 
         FTS_CORE_INFO("---Graphics Card Info---");
-        FTS_CORE_INFO("Vendor: {}", glGetString(GL_VENDOR));
-        FTS_CORE_INFO("Renderer: {}", glGetString(GL_RENDERER));
+    
+        /*
+        std::string vendor = (char*)glGetString(GL_VENDOR);
+        FTS_CORE_INFO("Vendor: {}", vendor);
+        std::string renderer = (char*)glGetString(GL_RENDERER);
+        FTS_CORE_INFO("Renderer: {}", renderer);*/
+
+        spdlog::info("Vendor: {}", (char*)(glGetString(GL_VENDOR)));
+        spdlog::info("Renderer: {}", (char*)(glGetString(GL_RENDERER)));
+        spdlog::info("Version: {}", (char*)(glGetString(GL_VERSION)));
+        spdlog::info("GLSL : {}", (char*)(glGetString(GL_SHADING_LANGUAGE_VERSION)));
+
 
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);

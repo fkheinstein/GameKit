@@ -19,6 +19,7 @@ namespace fts
     void SceneManager::SetCurrentScene(int index) { m_current_index = index; }
 
     Scene* SceneManager::GetCurrentScene() { return m_scenes[m_current_index]; }
+
     
 } // namespace fts
 
