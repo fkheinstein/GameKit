@@ -1,0 +1,5 @@
+#ifndef __CAMERACONTROLLER_H__
+#define __CAMERACONTROLLER_H__
+
+
+#endif // __CAMERACONTROLLER_H__

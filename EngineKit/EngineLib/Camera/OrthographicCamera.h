@@ -1,0 +1,5 @@
+#ifndef __ORTHOGRAPHICCAMERA_H__
+#define __ORTHOGRAPHICCAMERA_H__
+
+
+#endif // __ORTHOGRAPHICCAMERA_H__
