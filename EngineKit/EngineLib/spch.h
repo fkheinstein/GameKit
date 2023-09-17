@@ -59,4 +59,13 @@
 #include <Utils/GlmInclude.h>
 
 
+
+
+#ifdef FTS_IMGUI
+#include <imgui.h>
+#include <backends/imgui_impl_sdl.h>
+#include <backends/imgui_impl_opengl3.h>
+#endif
+
+
 #endif // __SPCH_H__

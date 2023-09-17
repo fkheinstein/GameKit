@@ -26,10 +26,10 @@ namespace fts
         virtual void OnTick(float) {}
 
         virtual void On(const WindowSizeEvent &) {}
-        virtual void On(const KeyEvent &) {}
-        virtual void On(const MouseMotionEvent &) {}
-        virtual void On(const MouseButtonEvent &) {}
-        virtual void On(const MouseWheelEvent &) {}
+        virtual void On(const KeyEvent&) {}
+        virtual void On(const MouseMotionEvent&) {}
+        virtual void On(const MouseButtonEvent&) {}
+        virtual void On(const MouseWheelEvent&) {}
         virtual void On(const TextInputEvent &) {}
         virtual void On(const AppQuitEvent &) {}
 

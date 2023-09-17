@@ -7,38 +7,43 @@
 
 namespace fts
 {
-using ClockType = std::chrono::high_resolution_clock;
+    using ClockType = std::chrono::high_resolution_clock;
 
-class  Clock {
-   public:
-    Clock();
+    class  Clock {
+    public:
+        Clock();
 
-    float GetElapsedMS() const;
+        void Reset();
 
-    // Restart the clock, and return elapsed millisecond.
-    float Restart();
+        float Elapsed() const;
+        float GetElapsedMS() const;
 
-   private:
-    std::chrono::time_point<ClockType> m_lastTicks;
-};
+        // Restart the clock, and return elapsed millisecond.
+        float Restart();
 
-class  FPSCounter {
-   public:
-    FPSCounter(uint8_t capacity);
+    private:
+        std::chrono::time_point<ClockType> m_lastTicks;
+    };
 
-    FPSCounter(const FPSCounter &) = delete;
-    FPSCounter &operator=(const FPSCounter &) = delete;
 
-    float GetFPS() const;
-    float GetFrameTime() const;
 
-    void Probe();
+    class  FPSCounter {
+    public:
+        FPSCounter(uint8_t capacity);
 
-   private:
-    Clock m_clock;
-    std::deque<float> m_queue;
-    uint8_t m_capacity;
-};
+        FPSCounter(const FPSCounter&) = delete;
+        FPSCounter& operator=(const FPSCounter&) = delete;
+
+        float GetFPS() const;
+        float GetFrameTime() const;
+
+        void Probe();
+
+    private:
+        Clock m_clock;
+        std::deque<float> m_queue;
+        uint8_t m_capacity;
+    };
 
 } // namespace fts
 

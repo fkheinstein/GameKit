@@ -1,7 +1,7 @@
 #include "Timing.h"
 
 #include <numeric>
-
+#include <chrono>
 
 
 //https://github.com/heinsteinh/GameEngineECS/blob/5fb71e65dfbe56c6ffe378efb5f5312d014608e2/GameProjet/GameLib/Utility/olcTimer.h
@@ -11,13 +11,23 @@ namespace fts
 
     Clock::Clock() : m_lastTicks(ClockType::now()) {}
 
+
+    void Clock::Reset()
+    {
+        m_lastTicks = std::chrono::high_resolution_clock::now();
+    }
+
+    float  Clock::Elapsed() const
+    {
+        return static_cast<float>(std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - m_lastTicks).count()) * 0.000000001f;
+    }
+
     float Clock::GetElapsedMS() const
     {
-        return std::chrono::duration_cast<std::chrono::microseconds>(
-                   ClockType::now() - m_lastTicks)
-                   .count() /
-               1000.f;
+        return Elapsed() * 1000.0f;
+        //return std::chrono::duration_cast<std::chrono::microseconds>(ClockType::now() - m_lastTicks).count() /  1000.f;
     }
+
 
     float Clock::Restart()
     {
