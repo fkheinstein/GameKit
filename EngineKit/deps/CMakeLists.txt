@@ -14,7 +14,6 @@ endif()
 #set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries")
 
 
-
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "")
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "")
@@ -60,6 +59,8 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/glm")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/spdlog")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/entt")
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/assimp")
+
+add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/eventpp")
 
 #This project is tested using GoogleTest.
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/src/googletest")
