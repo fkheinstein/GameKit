@@ -33,12 +33,16 @@ namespace fts
 
         virtual void* GetNativeWindow() const  override;
         //virtual GraphicsContext* GetGraphicsContext() const  override;
+
+        
     private:
         void SwapBuffer() override;
 
         void* m_context;
         SDL_Window* m_window;
         bool m_is_init_imgui;
+
+        //fts::event::MouseButton::Code ConvertToButton(uint8_t button);
     };
 } // namespace fts
 

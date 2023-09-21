@@ -4,7 +4,7 @@
 
 
 #include <Core/Event.h>
-
+#include <Event/EventManager.h>
 
 namespace fts {
 
@@ -46,6 +46,15 @@ namespace fts {
         virtual void On(const MouseMotionEvent&) {}
         virtual void On(const MouseButtonEvent&) {}
         virtual void On(const MouseWheelEvent&) {}
+
+
+
+
+        void AddListeners();
+
+
+    private:
+        decltype(fts::event::EventManager::event_dispatcher)::Handle mKeyPressed;
     };
 
 }

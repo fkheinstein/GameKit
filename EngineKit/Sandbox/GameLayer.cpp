@@ -58,9 +58,10 @@ namespace app01
 
     void GameLayer::OnPush() {
 
+        m_scenes->EmplaceScene("Empty Scene");
+
         Scene* scene = m_scenes->GetCurrentScene();
 
-        m_scenes->EmplaceScene("Empty Scene");
         /*   m_scenes->GetCurrentScene()->CreateEntity("Camera")
                .AddComponent<CameraComponent>()
                .AddComponent<NativeScriptComponent>()

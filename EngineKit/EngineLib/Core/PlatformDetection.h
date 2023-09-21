@@ -31,19 +31,28 @@
 #define FTS_CPU_ENDIAN_BIG 0
 #define FTS_CPU_ENDIAN_LITTLE 0
 
+
 // http://sourceforge.net/apps/mediawiki/predef/index.php?title=Compilers
-#if defined(_MSC_VER)
-#undef FTS_COMPILER_MSVC
-#define FTS_COMPILER_MSVC 1
-#elif defined(__clang__) // clang defines __GNUC__
-#undef FTS_COMPILER_CLANG
-#define FTS_COMPILER_CLANG 1
+#if defined(__clang__)
+// clang defines __GNUC__ or _MSC_VER
+#	undef  FTS_COMPILER_CLANG
+#	define FTS_COMPILER_CLANG (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)
+#	if defined(__clang_analyzer__)
+#		undef  FTS_COMPILER_CLANG_ANALYZER
+#		define FTS_COMPILER_CLANG_ANALYZER 1
+#	endif // defined(__clang_analyzer__)
+#elif defined(_MSC_VER)
+#	undef  FTS_COMPILER_MSVC
+#	define FTS_COMPILER_MSVC _MSC_VER
 #elif defined(__GNUC__)
-#undef FTS_COMPILER_GCC
-#define FTS_COMPILER_GCC 1
+#	undef  FTS_COMPILER_GCC
+#	define FTS_COMPILER_GCC (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #else
-#error "FTS_COMPILER_* is not defined!"
-#endif
+#	error "FTS_COMPILER_* is not defined!"
+#endif //
+
+
+
 
 // http://sourceforge.net/apps/mediawiki/predef/index.php?title=Operating_Systems
 #if defined(_WIN32) || defined(_WIN64)

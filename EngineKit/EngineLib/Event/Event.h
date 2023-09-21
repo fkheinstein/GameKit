@@ -1,7 +1,10 @@
-#ifndef __EVENT_H__
-#define __EVENT_H__
+#ifndef __EVENT2_H__
+#define __EVENT2_H__
 
 
+
+
+#include <Core/Keyboard.h>
 
 
 namespace fts::event
@@ -11,10 +14,11 @@ namespace fts::event
     // Types
     //-------------------------------------------------
 
-    enum class MdciiEventType
+    enum class FtsEventType
     {
         // default
         NONE,
+        EVENT_QUIT,
 
         // keyboard events
         KEY_PRESSED,
@@ -23,99 +27,207 @@ namespace fts::event
         // mouse events
         MOUSE_BUTTON_PRESSED,
         MOUSE_BUTTON_RELEASED,
-        MOUSE_MOVED,
-        MOUSE_SCROLLED,
-        MOUSE_ENTER,
+        MOUSE_MOVED_EVT,
+        MOUSE_SCROLLED_EVT,
+        MOUSE_ENTER_EVT,
     };
 
     //-------------------------------------------------
     // Event base class
     //-------------------------------------------------
 
-    struct MdciiEvent
+    struct FtsEvent
     {
-        MdciiEvent() = default;
-        virtual ~MdciiEvent() = default;
+        FtsEvent() = default;
+        virtual ~FtsEvent() = default;
 
-        MdciiEventType type{MdciiEventType::NONE};
+        FtsEventType type{FtsEventType::NONE};
     };
 
     //-------------------------------------------------
     // Keyboard events
     //-------------------------------------------------
 
-    struct KeyPressedEvent : MdciiEvent
+    struct QuitEvent : FtsEvent
+    {
+        explicit QuitEvent()
+        {
+            type = FtsEventType::EVENT_QUIT;
+        }
+    };
+
+
+    struct KeyPressedEventV2 : FtsEvent
     {
         int key;
         int repeatCount;
 
-        explicit KeyPressedEvent(const int t_key, const int t_repeatCount = 0)  : key{t_key}, repeatCount{t_repeatCount}
+        explicit KeyPressedEventV2(const int t_key, const int t_repeatCount = 0) : key{ t_key }, repeatCount{ t_repeatCount }
         {
-            type = MdciiEventType::KEY_PRESSED;
+            type = FtsEventType::KEY_PRESSED;
         }
     };
 
-    struct KeyReleasedEvent : MdciiEvent
+    struct KeyReleasedEventV2 : FtsEvent
     {
         int key;
-
-        explicit KeyReleasedEvent(const int t_key)  : key{t_key}
+        explicit KeyReleasedEventV2(const int t_key) : key{ t_key }
         {
-            type = MdciiEventType::KEY_RELEASED;
+            type = FtsEventType::KEY_RELEASED;
         }
     };
+
+    struct  KeyPressedEvent : FtsEvent
+    {
+        Keycode Key;
+        uint16_t Mod {0};
+        bool Repeat{ false };
+        explicit KeyPressedEvent(Keycode t_key, bool t_repeatCount = false) : Key{ t_key }, Repeat{ t_repeatCount }
+        {
+            type = FtsEventType::KEY_PRESSED;
+        }
+    };
+
+    struct  KeyReleasedEvent : FtsEvent
+    {
+        Keycode Key;
+        uint16_t Mod{ 0 };
+        explicit KeyReleasedEvent(Keycode t_key) : Key{ t_key }
+        {
+            type = FtsEventType::KEY_RELEASED;
+        }
+    };
+
+
 
     //-------------------------------------------------
     // Mouse events
     //-------------------------------------------------
 
-    struct MouseButtonPressedEvent : MdciiEvent
+
+    struct MouseButton {
+        enum class Code : uint8_t {
+            None = 0,
+            Left,
+            Right,
+            Middle,
+
+            Count,
+            Invalid = 0xFF,
+        };
+
+        enum class State : uint8_t {
+            Release = 0,
+            Press
+        };
+
+        enum class WheelDirection : uint8_t {
+            Normal,
+            Flipped
+        };
+    };
+
+
+    struct MouseMoveEvt : FtsEvent {
+        uint32_t PosX = 0;
+        uint32_t PosY = 0;
+
+        float DeltaX = 0.0f;
+        float DeltaY = 0.0f;
+
+        explicit MouseMoveEvt() {
+            type = FtsEventType::MOUSE_MOVED_EVT;
+        }
+    };
+
+
+    struct MouseButtonReleasedEvt : FtsEvent {
+        uint32_t X = 0;;
+        uint32_t Y = 0;;
+        uint8_t Clicks = 0;        
+
+        MouseButton::Code Button = MouseButton::Code::None;
+        MouseButton::State ButtonState = MouseButton::State::Release;
+
+        explicit MouseButtonReleasedEvt() {
+            type = FtsEventType::MOUSE_BUTTON_RELEASED;
+        }
+    };
+
+    struct MouseButtonPressedEvt : FtsEvent {
+        uint32_t X = 0;
+        uint32_t Y = 0;
+        uint8_t Clicks = 0;
+
+        MouseButton::Code Button = MouseButton::Code::None;
+        MouseButton::State ButtonState = MouseButton::State::Release;
+
+        explicit MouseButtonPressedEvt() {
+            type = FtsEventType::MOUSE_BUTTON_PRESSED;
+        }
+    };
+
+    struct MouseWheelEvt : FtsEvent {
+        float Y = 0.0f;
+        float X = 0.0f;
+        float DeltaY = 0.0f;
+        float DeltaX = 0.0f;
+
+        MouseButton::WheelDirection direction = MouseButton::WheelDirection::Normal;
+
+        explicit MouseWheelEvt() {
+            type = FtsEventType::MOUSE_SCROLLED_EVT;
+        }
+    };
+
+
+
+
+    struct MouseButtonPressedEvent : FtsEvent
     {
         int button;
         explicit MouseButtonPressedEvent(const int t_button) : button{t_button}
         {
-            type = MdciiEventType::MOUSE_BUTTON_PRESSED;
+            type = FtsEventType::MOUSE_BUTTON_PRESSED;
         }
     };
 
-    struct MouseButtonReleasedEvent : MdciiEvent
+    struct MouseButtonReleasedEvent : FtsEvent
     {
         int button;
 
         explicit MouseButtonReleasedEvent(const int t_button) : button{t_button}
         {
-            type = MdciiEventType::MOUSE_BUTTON_RELEASED;
+            type = FtsEventType::MOUSE_BUTTON_RELEASED;
         }
     };
 
-    struct MouseMovedEvent : MdciiEvent
+    struct MouseMovedEvent : FtsEvent
     {
         float x;
         float y;
 
-        MouseMovedEvent(const float t_x, const float t_y): x{t_x}, y{t_y}
-        {
-            type = MdciiEventType::MOUSE_MOVED;
+        MouseMovedEvent(const float t_x, const float t_y): x{t_x}, y{t_y} {
+            type = FtsEventType::MOUSE_MOVED_EVT;
         }
     };
 
-    struct MouseScrolledEvent : MdciiEvent
+    struct MouseScrolledEvent : FtsEvent
     {
         float xOffset;
         float yOffset;
 
-        MouseScrolledEvent(const float t_xOffset, const float t_yOffset) : xOffset{t_xOffset}, yOffset{t_yOffset}
-        {
-            type = MdciiEventType::MOUSE_SCROLLED;
+        MouseScrolledEvent(const float t_xOffset, const float t_yOffset) : xOffset{t_xOffset}, yOffset{t_yOffset} {
+            type = FtsEventType::MOUSE_SCROLLED_EVT;
         }
     };
 
-    struct MouseEnterEvent : MdciiEvent
+    struct MouseEnterEvent : FtsEvent
     {
         bool enter;
         explicit MouseEnterEvent(const bool t_enter) : enter{t_enter}
         {
-            type = MdciiEventType::MOUSE_ENTER;
+            type = FtsEventType::MOUSE_ENTER_EVT;
         }
     };
 
@@ -124,4 +236,4 @@ namespace fts::event
 
 
 
-#endif // __EVENT_H__
+#endif // __EVENT2_H__

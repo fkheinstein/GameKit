@@ -1,9 +1,8 @@
 #ifndef __EVENTMANAGER_H__
 #define __EVENTMANAGER_H__
 
-#include "Event.h"
-#include "eventpp/eventdispatcher.h"
-
+#include <Event/Event.h>
+#include <eventpp/eventdispatcher.h>
 
 
 //https://github.com/stwe/MDCII/blob/main/src/event/EventManager.h
@@ -25,7 +24,7 @@ namespace fts::event
         // Member
         //-------------------------------------------------
 
-        inline static eventpp::EventDispatcher<MdciiEventType, void(const MdciiEvent&)> event_dispatcher;
+        inline static eventpp::EventDispatcher<FtsEventType, void(const FtsEvent&)> event_dispatcher;
 
         //-------------------------------------------------
         // Ctors. / Dtor.
