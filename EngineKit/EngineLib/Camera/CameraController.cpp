@@ -5,7 +5,6 @@
 #include <Camera/Camera.h>
 
 
-#include <eventpp/utilities/argumentadapter.h>
 
 
 namespace fts
@@ -20,20 +19,20 @@ namespace fts
     {
         FTS_CORE_INFO("[Camera::AddListeners()] Add listeners.");
 
-        mKeyPressed = fts::event::EventManager::event_dispatcher.appendListener(
-            fts::event::FtsEventType::KEY_PRESSED,
+        mKeyPressed = fts::evt::EventManager::eventDispatcher.appendListener(
+            fts::evt::EventType::KeyPressed,
 
-            eventpp::argumentAdapter<void(const event::KeyPressedEvent&)>(
-                [this](const event::KeyPressedEvent& t_event) {
+            eventpp::argumentAdapter<void(const fts::evt::KeyPressedEvent&)>(
+                [this](const fts::evt::KeyPressedEvent& t_event) {
 
-
-                    if (t_event.Key == fts::Keycode::W || t_event.Key == fts::Keycode::Up)
+                    if (t_event.GetKeyCode() == fts::Keycode::W || t_event.GetKeyCode() == fts::Keycode::Up)
                     {
 
                     }
-                }    
+                }
             )
         );
+
     }
 
 

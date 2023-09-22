@@ -4,7 +4,7 @@
 
 
 #include <Core/Event.h>
-#include <Event/EventManager.h>
+#include <Events/EventManager.h>
 
 namespace fts {
 
@@ -30,8 +30,6 @@ namespace fts {
         virtual void OnEvent(const Event& e) = 0;*/
 
 
-
-
         virtual void OnScroll(float new_zoom_level) = 0;
         virtual void OnResize(uint32_t new_width, uint32_t new_height) = 0;
         virtual const Ref<Camera>& GetCamera() const = 0;
@@ -48,13 +46,10 @@ namespace fts {
         virtual void On(const MouseWheelEvent&) {}
 
 
+        virtual void AddListeners() ;
 
-
-        void AddListeners();
-
-
-    private:
-        decltype(fts::event::EventManager::event_dispatcher)::Handle mKeyPressed;
+    protected:
+        decltype(fts::evt::EventManager::eventDispatcher)::Handle mKeyPressed;
     };
 
 }

@@ -21,6 +21,7 @@
 
 
 
+
 namespace fts {
 
     GraphicsLayer::GraphicsLayer(ResourceManager *resources, SceneManager *scenes,Device* device, int32_t width, int32_t height, MultiSampleLevel msaa)
@@ -45,6 +46,12 @@ namespace fts {
         Renderer3D::Init();
 
         m_light_icon = m_resources->textures.Get("icon/light");
+
+
+        fts::evt::EventManager::eventDispatcher.appendListener(evt::EventType::WindowResize, [this](const evt::Event& event) {
+            //this->SetRenderSize(event);
+            });
+
     }
 
 
@@ -55,6 +62,21 @@ namespace fts {
 
         m_main_target->Attach(*m_color_buffer, 0, 0);
         m_main_target->Attach(*m_depth_buffer, 0);
+
+
+        mWindowResize = fts::evt::EventManager::eventDispatcher.appendListener(
+            fts::evt::EventType::WindowResize,
+
+            eventpp::argumentAdapter<void(const fts::evt::WindowResizeEvent&)>(
+                [this](const fts::evt::WindowResizeEvent& evt) {
+
+
+                    evt.ToString();
+
+                    this->SetRenderSize(evt.GetWidth(), evt.GetHeight());
+                }
+            )
+        );
     }
 
 
@@ -80,14 +102,14 @@ namespace fts {
             });
 
 
-        if (cameraComp.camera == nullptr) 
+        /*if (cameraComp.camera == nullptr) 
         {
             FTS_ASSERT_MSG(false, "Camera cannot be null");
-        }
+        }*/
 
 
-        Renderer::BeginRenderPass({ m_main_target.get(), m_width, m_height });
-        Renderer::SetCamera(*m_camera);
+        //Renderer::BeginRenderPass({ m_main_target.get(), m_width, m_height });
+        //Renderer::SetCamera(*m_camera);
 
         uint32_t id = static_cast<uint32_t>(entt::null);
         m_main_target->ClearAttachment(1, &id);
@@ -132,6 +154,7 @@ namespace fts {
     void GraphicsLayer::OnImGui() {
 
     }
+
 
 
     void GraphicsLayer::SetRenderSize(int32_t width, int32_t height)

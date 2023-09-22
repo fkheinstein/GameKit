@@ -59,6 +59,11 @@
 #include <Utils/GlmInclude.h>
 
 
+#include <Events/KeyEvent.h>
+#include <Events/MouseEvent.h>
+#include <Events/WindowEvent.h>
+#include <Events/EventManager.h>
+#include <eventpp/utilities/argumentadapter.h>
 
 
 #ifdef FTS_IMGUI

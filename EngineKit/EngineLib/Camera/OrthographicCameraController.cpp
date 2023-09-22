@@ -38,6 +38,28 @@ namespace fts
         ReCalculateView();
     }
 
+
+
+    void CameraController::AddListeners()
+    {
+        FTS_CORE_INFO("[Camera::AddListeners()] Add listeners.");
+
+        /*mKeyPressed = fts::event::EventManager::event_dispatcher.appendListener( fts::event::FtsEventType::KEY_PRESSED,
+
+            eventpp::argumentAdapter<void(const event::KeyPressedEvent&)>(
+                [this](const event::KeyPressedEvent& t_event) {
+
+
+                    if (t_event.Key == fts::Keycode::W || t_event.Key == fts::Keycode::Up)
+                    {
+
+                    }
+                }
+            )
+        );*/
+    }
+
+
     void OrthographicCameraController::On(const KeyEvent& e) {
     
         if (!e.state) return;

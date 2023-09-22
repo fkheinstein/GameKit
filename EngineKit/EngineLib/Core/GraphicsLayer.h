@@ -8,6 +8,8 @@
 #include <Resource/Resource.h>
 #include <Resource/ResourceManager.h>
 
+#include <Events/EventManager.h>
+
 namespace fts
 {
     class Renderbuffer;
@@ -58,6 +60,8 @@ namespace fts
         FPSCounter m_fps;
         float m_deferred_time;
         float m_post_rendering_time;
+
+        decltype(fts::evt::EventManager::eventDispatcher)::Handle mWindowResize;
     };
 
 } // namespace fts

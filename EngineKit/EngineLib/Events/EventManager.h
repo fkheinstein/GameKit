@@ -1,18 +1,14 @@
 #ifndef __EVENTMANAGER_H__
 #define __EVENTMANAGER_H__
 
-#include <Event/Event.h>
+#include <Events/Event.h>
 #include <eventpp/eventdispatcher.h>
 
 
 //https://github.com/stwe/MDCII/blob/main/src/event/EventManager.h
 
 
-//-------------------------------------------------
-// EventManager
-//-------------------------------------------------
-
-namespace fts::event
+namespace fts::evt
 {
     /**
      * Static event handling.
@@ -20,11 +16,10 @@ namespace fts::event
     class EventManager
     {
     public:
-        //-------------------------------------------------
-        // Member
-        //-------------------------------------------------
+        //inline static eventpp::EventDispatcher<FtsEventType, void(const FtsEvent&)> event_dispatcher;
 
-        inline static eventpp::EventDispatcher<FtsEventType, void(const FtsEvent&)> event_dispatcher;
+
+        inline static eventpp::EventDispatcher<EventType, void(const Event&), EventPolicies> eventDispatcher;
 
         //-------------------------------------------------
         // Ctors. / Dtor.
@@ -35,19 +30,11 @@ namespace fts::event
         EventManager& operator=(const EventManager& t_other) = delete;
         EventManager& operator=(EventManager&& t_other) noexcept = delete;
 
-        //-------------------------------------------------
-        // Init
-        //-------------------------------------------------
-
-        // static void SetKeyboardGlfwCallbacks(GLFWwindow* t_windowHandle);
-        // static void SetMouseGlfwCallbacks(GLFWwindow* t_windowHandle);
-    protected:
 
     private:
         //-------------------------------------------------
         // Ctors. / Dtor.
         //-------------------------------------------------
-
         EventManager() = default;
         ~EventManager() noexcept = default;
     };

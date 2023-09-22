@@ -7,7 +7,6 @@
 #include "Core/Layer.h"
 
 
-#include "Event/Event.h"
 
 
 #include "Utils/OpenGLLibInclude.h"
@@ -19,8 +18,15 @@
 #include <backends/imgui_impl_opengl3.h>
 #endif
 
-#include <Event/Event.h>
-#include <Event/EventManager.h>
+#include <Events/Event.h>
+#include <Events/EventManager.h>
+
+
+#include <Events/KeyEvent.h>
+#include <Events/MouseEvent.h>
+#include <Events/WindowEvent.h>
+
+
 
 
 #define  DEBUG_BUILD
@@ -51,6 +57,24 @@ namespace fts {
             return fts::event::MouseButton::Code::Right;
         }
         return  fts::event::MouseButton::Code::Count;
+    }
+
+
+    fts::MouseButton ConvertToButton1(uint8_t button)
+    {
+        if (button == SDL_BUTTON_LEFT)
+        {
+            return fts::MouseButton::Left;
+        }
+        if (button == SDL_BUTTON_MIDDLE)
+        {
+            return fts::MouseButton::Middle;
+        }
+        else if (button == SDL_BUTTON_RIGHT)
+        {
+            return fts::MouseButton::Right;
+        }
+        return  fts::MouseButton::Count;
     }
 
 
@@ -121,7 +145,13 @@ namespace fts {
                 event.x_rel = sdl_event.motion.xrel;
                 event.y_rel = sdl_event.motion.yrel;
                 ProcessEvent(event, layers);
+
+
+                fts::evt::MouseMovedEvent evtMoved{ (float)event.x , (float)event.y};
+                fts::evt::EventManager::eventDispatcher.dispatch(evtMoved.GetEventType(), evtMoved);
+
             } break;
+
             case SDL_MOUSEBUTTONDOWN:
             { 
                 MouseButtonEvent event;
@@ -132,14 +162,8 @@ namespace fts {
                 event.state = sdl_event.button.state;
                 ProcessEvent(event, layers);
 
-                fts::event::MouseButton::Code button = ConvertToButton(sdl_event.button.button);
-                fts::event::MouseButtonPressedEvt mouseDownEvent;
-                mouseDownEvent.X = sdl_event.button.x;
-                mouseDownEvent.Y = sdl_event.button.y;
-                mouseDownEvent.Clicks = sdl_event.button.clicks;
-                mouseDownEvent.Button = button;
-                mouseDownEvent.ButtonState = sdl_event.button.state == SDL_PRESSED ? fts::event::MouseButton::State::Press : fts::event::MouseButton::State::Release;
-                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::MOUSE_BUTTON_PRESSED, mouseDownEvent);
+                fts::evt::MouseButtonPressedEvent evtPressed{ static_cast<MouseButton>(sdl_event.button.button) };
+                fts::evt::EventManager::eventDispatcher.dispatch(evtPressed.GetEventType(), evtPressed);
 
             }  break;
 
@@ -154,22 +178,17 @@ namespace fts {
 
 
 
-                fts::event::MouseButton::Code button = ConvertToButton(sdl_event.button.button);
+               /* fts::event::MouseButton::Code button = ConvertToButton(sdl_event.button.button);
                 fts::event::MouseButtonReleasedEvt mouseUpEvent;
                 mouseUpEvent.X = sdl_event.button.x;
                 mouseUpEvent.Y = sdl_event.button.y;
                 mouseUpEvent.Clicks = sdl_event.button.clicks;
                 mouseUpEvent.Button = button;
                 mouseUpEvent.ButtonState = sdl_event.button.state == SDL_PRESSED ? fts::event::MouseButton::State::Press : fts::event::MouseButton::State::Release;
-                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::MOUSE_BUTTON_RELEASED, mouseUpEvent);
+                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::MOUSE_BUTTON_RELEASED, mouseUpEvent);*/
 
-
-            /*    fts::event::MouseButtonPressedEvent eventPress((const int)event.button);
-                eventPress.type = event.state == SDL_PRESSED ? event::FtsEventType::MOUSE_BUTTON_PRESSED : event::FtsEventType::MOUSE_BUTTON_RELEASED;
-
-
-                fts::event::EventManager::event_dispatcher.dispatch(event.state == SDL_PRESSED ? event::FtsEventType::MOUSE_BUTTON_PRESSED : event::FtsEventType::MOUSE_BUTTON_RELEASED
-                    , fts::event::MouseButtonPressedEvent((const int)event.button));*/
+                fts::evt::MouseButtonReleasedEvent evtReleased{ static_cast<MouseButton>(sdl_event.button.button) };
+                fts::evt::EventManager::eventDispatcher.dispatch(evtReleased.GetEventType(), evtReleased);
 
             }  break;
 
@@ -179,14 +198,16 @@ namespace fts {
                 event.y = sdl_event.wheel.y;
                 ProcessEvent(event, layers);
 
-                fts::event::MouseWheelEvt mouseWheelEvent;
+                /*fts::event::MouseWheelEvt mouseWheelEvent;
                 mouseWheelEvent.Y = sdl_event.wheel.y;
                 mouseWheelEvent.X = sdl_event.wheel.x;
                 mouseWheelEvent.DeltaY = sdl_event.wheel.y;
                 mouseWheelEvent.direction = (sdl_event.wheel.direction == SDL_MOUSEWHEEL_NORMAL ? fts::event::MouseButton::WheelDirection::Normal : fts::event::MouseButton::WheelDirection::Flipped);
+                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::MOUSE_SCROLLED_EVT, mouseWheelEvent);*/
 
+                fts::evt::MouseScrolledEvent evt{ (float)sdl_event.wheel.x, (float)sdl_event.wheel.y };
+                fts::evt::EventManager::eventDispatcher.dispatch(evt.GetEventType(), evt);
 
-                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::MOUSE_SCROLLED_EVT, mouseWheelEvent);
             } break;
 
             case SDL_KEYDOWN:
@@ -198,29 +219,34 @@ namespace fts {
                 ProcessEvent(event, layers);
 
 
-                fts::event::KeyPressedEvent keyPressed(static_cast<fts::Keycode>(sdl_event.key.keysym.scancode, sdl_event.key.repeat != 0 ? true : false));
+               /* fts::event::KeyPressedEvent keyPressed(static_cast<fts::Keycode>(sdl_event.key.keysym.scancode, sdl_event.key.repeat != 0 ? true : false));
                 keyPressed.Key = static_cast<Keycode>(sdl_event.key.keysym.scancode);
                 keyPressed.Repeat = sdl_event.key.repeat != 0 ? true : false;
                 keyPressed.Mod = sdl_event.key.keysym.mod;
-                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::KEY_PRESSED, keyPressed);
+                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::KEY_PRESSED, keyPressed);*/
+
+                fts::evt::KeyPressedEvent evtKey{ static_cast<Keycode>(sdl_event.key.keysym.scancode), sdl_event.key.repeat != 0 ? true : false };
+                fts::evt::EventManager::eventDispatcher.dispatch(evtKey.GetEventType(), evtKey);
+
 
             } break;
 
             case SDL_KEYUP:
             {
-            /*  KeyEvent event;
+                KeyEvent event;
                 event.keycode = static_cast<Keycode>(sdl_event.key.keysym.sym);
                 event.mod = sdl_event.key.keysym.mod;
                 event.state = sdl_event.key.state;
                 ProcessEvent(event, layers);
-                */
+                
 
-                fts::event::KeyReleasedEvent keyReleased(static_cast<fts::Keycode>(sdl_event.key.keysym.scancode));
-                keyReleased.Key = static_cast<Keycode>(sdl_event.key.keysym.scancode);
-                keyReleased.Mod = sdl_event.key.keysym.mod;
+                //fts::event::KeyReleasedEvent keyReleased(static_cast<fts::Keycode>(sdl_event.key.keysym.scancode));
+                //keyReleased.Key = static_cast<Keycode>(sdl_event.key.keysym.scancode);
+                //keyReleased.Mod = sdl_event.key.keysym.mod;
+                //fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::KEY_RELEASED, keyReleased);
 
-                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::KEY_RELEASED, keyReleased);
-
+                fts::evt::KeyReleasedEvent evtKey{ static_cast<Keycode>(sdl_event.key.keysym.scancode) };
+                fts::evt::EventManager::eventDispatcher.dispatch(evtKey.GetEventType(), evtKey);
 
 
 
@@ -233,21 +259,23 @@ namespace fts {
                     event.width = sdl_event.window.data1;
                     event.height = sdl_event.window.data2;
                     ProcessEvent(event, layers);
+
+                    fts::evt::WindowResizeEvent evtRzResize(sdl_event.window.data1, sdl_event.window.data2);
+                    fts::evt::EventManager::eventDispatcher.dispatch(evtRzResize.GetEventType(), evtRzResize);
                 } break;
                 }
             } break;
             case SDL_TEXTINPUT: {
                 TextInputEvent event;
-                std::copy(std::begin(sdl_event.text.text),
-                    std::end(sdl_event.text.text), event.text);
+                std::copy(std::begin(sdl_event.text.text), std::end(sdl_event.text.text), event.text);
 
                 ProcessEvent(event, layers);
             } break;
             case SDL_QUIT: {
 
+                fts::evt::WindowCloseEvent evtQuit;
+                fts::evt::EventManager::eventDispatcher.dispatch(evtQuit.GetEventType(), evtQuit);
 
-                fts::event::QuitEvent evtQuit;
-                fts::event::EventManager::event_dispatcher.dispatch(event::FtsEventType::EVENT_QUIT, evtQuit);
 
                 AppQuitEvent event;
                 ProcessEvent(event, layers);

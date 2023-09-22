@@ -32,6 +32,7 @@ include_directories("${DEPS_DIR}/src/entt/src")
 include_directories("${DEPS_DIR}/src/stduuid/include")
 include_directories("${DEPS_DIR}/src/FastDelegate")
 
+include_directories("${DEPS_DIR}/src/eventpp/include")
 
 include_directories("${DEPS_DIR}/src/LuaBridge/Source")
 include_directories("${DEPS_DIR}/src/Lua/src")

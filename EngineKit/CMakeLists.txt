@@ -5,6 +5,7 @@ get_filename_component(PROJ_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 string(REPLACE " " "_" PROJ_NAME ${PROJ_NAME})
 
 
+
 # encode version number as <major>.<minor>.<patch>:<changeset>
 set(ENGINE_VERSION_MAJOR "1")
 set(ENGINE_VERSION_MINOR "0")
