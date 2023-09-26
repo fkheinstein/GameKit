@@ -26,8 +26,8 @@ namespace fts {
     public:
         virtual ~CameraController() = default;
 
-        /*virtual void OnUpdate(const TimeStep& dt) = 0;
-        virtual void OnEvent(const Event& e) = 0;*/
+        virtual void OnUpdate(const float& dt) = 0;
+        //virtual void OnEvent(const Event& e) = 0;
 
 
         virtual void OnScroll(float new_zoom_level) = 0;

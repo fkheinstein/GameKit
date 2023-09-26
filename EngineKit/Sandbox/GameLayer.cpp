@@ -10,6 +10,11 @@
 #include <Graphics/Framebuffer.h>
 #include <Renderer/Renderer2D.h>
 
+#include <ECS/Component.h>
+
+
+#include <Camera/PerspectiveCameraController.h>
+
 namespace app01
 {
 
@@ -21,13 +26,12 @@ namespace app01
         , m_resources(resources)
         , m_scenes(scenes)
 
-
         , m_viewport_pos(0, 0)
         , m_viewport_size(width, height)
-
         , m_quitting(false)
     {
 
+        mCameraController = std::make_shared<fts::PerspectiveCameraController>((width)/(height));
 
 
         static const struct
@@ -48,7 +52,7 @@ namespace app01
 
 
         m_graphics_layer->SetRenderSize(m_viewport_size.x, m_viewport_size.y);        
-        //m_graphics_layer->SetCamera(&m_editor_camera);
+        m_graphics_layer->SetCamera(mCameraController->GetCamera().get());
 
         //m_viewport_target = fts::Framebuffer::Create();
         //m_graphics_layer->OutputColorBuffer(m_viewport_target.get(), 0);
@@ -72,8 +76,8 @@ namespace app01
 
         auto entityCamera = scene->CreateEntity("Camera");
 
-        //if (!entityCamera.HasComponent<CameraComponent>())
-        //    entityCamera.AddComponent<CameraComponent>(CameraType::Perspective,  glm::radians(45.f), 400,  400, 0.1f, 1000.f);
+        if (!entityCamera.HasComponent<fts::CameraComponent>())
+            entityCamera.AddComponent<CameraComponent>().cameraController = mCameraController.get() ;
 
 
     }
@@ -134,13 +138,11 @@ namespace app01
     }
 
 
-    void GameLayer::On(const fts::MouseMotionEvent& e)
-    {
+    void GameLayer::On(const fts::MouseMotionEvent& e) {
 
     }
 
-    void GameLayer::On(const fts::MouseButtonEvent& e)
-    {
+    void GameLayer::On(const fts::MouseButtonEvent& e) {
 
     }
 

@@ -2,7 +2,7 @@
 #define E62DA1BE_2623_41E7_B1FE_41713906D931
 
 
-namespace fts
+namespace fts::old
 {
     
     class Camera

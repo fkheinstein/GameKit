@@ -6,6 +6,10 @@
 #include "Core/Layer.h"
 #include "Core/InputDevice.h"
 
+#include <Camera/Camera.h>
+#include <Camera/CameraController.h>
+
+
 namespace app01
 {
 
@@ -45,6 +49,11 @@ namespace app01
 
         Ref<fts::Framebuffer> m_viewport_target;
         Ref<fts::Texture> m_scene_buffer;
+
+
+        Ref<fts::CameraController> mCameraController;
+
+
     };
 } // namespace app01
 

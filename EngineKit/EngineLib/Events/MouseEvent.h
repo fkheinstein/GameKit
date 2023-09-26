@@ -55,7 +55,7 @@ namespace fts::evt
     {
     public:
         explicit MouseButtonPressedEvent(MouseButton button);
-
+         
         [[nodiscard]] std::string ToString() const override;
 
         EVENT_CLASS_TYPE(MouseButtonPressed)
@@ -70,6 +70,8 @@ namespace fts::evt
 
         EVENT_CLASS_TYPE(MouseButtonReleased)
     };
+
+
 
 } // namespace fts::evt
 

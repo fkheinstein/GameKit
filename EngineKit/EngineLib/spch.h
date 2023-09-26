@@ -41,14 +41,34 @@
 #include <optional>
 
 
-#include <stb_image.h>
-#include <stb_image_write.h>
-
 
 #include <Core/Base.h>
 #include <Core/Log.h>
 #include <Core/Assert.h>
 #include <Core/Macro.h>
+
+
+
+//stb
+#include <stb_image.h>
+#include <stb_image_write.h>
+
+
+//spdlog
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/fmt/ostr.h>
+
+
+
+
+//eventpp
+#include <eventpp/eventqueue.h>
+#include <eventpp/eventdispatcher.h>
+#include <eventpp/callbacklist.h>
+#include <eventpp/mixins/mixinfilter.h>
+
 
 
 #include <Utils/Init.h>

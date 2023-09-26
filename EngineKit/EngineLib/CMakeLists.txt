@@ -15,8 +15,6 @@ include_directories(${INCLUDE_OUTPUT_PATH})
 include_directories(${Engine_DIR})
 
 
-
-
 include_directories("${DEPS_DIR}/src/glew-cmake/include")
 include_directories("${DEPS_DIR}/src/glfw/include")
 include_directories("${DEPS_DIR}/src/glm")
@@ -31,7 +29,6 @@ include_directories("${DEPS_DIR}/src/LuaBridge/Source")
 include_directories("${DEPS_DIR}/src/Lua/src")
 
 include_directories("${DEPS_DIR}/src/eventpp/include")
-
 
 
 include_directories("${DEPS_DIR}/vendor/glad/include")

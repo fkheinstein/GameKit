@@ -2,6 +2,7 @@
 #define __CASCADESHADOW_H__
 
 
+//#include <Camera/Camera.h>
 
 namespace fts
 {

@@ -3,7 +3,7 @@
 #include "CascadeShadow.h"
 
 #include "Graphics/Framebuffer.h"
-#include "Graphics/Camera.h"
+#include "Camera/Camera.h"
 
 #include "Utils/Transform.h"
 

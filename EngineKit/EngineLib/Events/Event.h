@@ -31,7 +31,9 @@ namespace fts::evt {
         MouseButtonPressed,
         MouseButtonReleased,
         MouseMoved,
-        MouseScrolled
+        MouseScrolled,
+
+        Last
     };
 
     class Event {

@@ -19,20 +19,31 @@ namespace fts
     {
         FTS_CORE_INFO("[Camera::AddListeners()] Add listeners.");
 
-        mKeyPressed = fts::evt::EventManager::eventDispatcher.appendListener(
-            fts::evt::EventType::KeyPressed,
+      
 
-            eventpp::argumentAdapter<void(const fts::evt::KeyPressedEvent&)>(
-                [this](const fts::evt::KeyPressedEvent& t_event) {
+        auto mWindowResize = fts::evt::EventManager::eventDispatcher.appendListener(
+            fts::evt::EventType::WindowResize,
 
-                    if (t_event.GetKeyCode() == fts::Keycode::W || t_event.GetKeyCode() == fts::Keycode::Up)
-                    {
+            eventpp::argumentAdapter<void(const fts::evt::WindowResizeEvent&)>(
+                [this](const fts::evt::WindowResizeEvent& evt) {
 
-                    }
+                    //FTS_CORE_TRACE(evt.ToString());
+                    this->OnResize(evt.GetWidth(), evt.GetHeight());
                 }
             )
         );
 
+        fts::evt::EventManager::eventDispatcher.appendListener(
+            fts::evt::EventType::MouseScrolled,
+
+            eventpp::argumentAdapter<void(const fts::evt::MouseScrolledEvent&)>(
+                [this](const fts::evt::MouseScrolledEvent& evt) {
+
+                    //FTS_CORE_TRACE(evt.ToString());
+                    this->OnScroll(evt.GetXOffset()/*, evt.GetHeight()*/);
+                }
+            )
+        );
     }
 
 

@@ -43,8 +43,7 @@ namespace fts
         s_mesh_data.mesh_vao->AddBufferLayout(layout);
 
         s_mesh_data.default_texture =
-            Texture::Create(1, 1, 1, MultiSampleLevel::None, TextureType::Normal2D,
-                DataFormat::RGB8,
+            Texture::Create(1, 1, 1, MultiSampleLevel::None, TextureType::Normal2D, DataFormat::RGB8,
                 { TextureWrap::Repeat, TextureMinFilter::Linear, TextureMagFilter::Linear, MipmapMode::None });
 
         const uint8_t color[3] = { 0xff, 0xff, 0xff };

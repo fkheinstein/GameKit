@@ -13,6 +13,7 @@
 #include "Graphics/PointShadow.h"
 
 
+
 #include "Utils/Transform.h"
 
 #include "ECS/Scene.h"
@@ -20,7 +21,7 @@
 namespace fts
 {
 
-
+    class CameraController;
     using Vector2f = glm::vec2;
     using Vector3f = glm::vec3;
     using Vector4f = glm::vec4;
@@ -115,7 +116,7 @@ namespace fts
     };
 
     struct CameraComponent {
-        Camera* camera{nullptr};
+        CameraController* cameraController{nullptr};
         bool primary{ true };
         CameraComponent() = default;        
         CameraComponent(float fov, float width, float height,  float near_z, float far_z) //: camera(type, fov, width, height, near_z, far_z)
@@ -142,8 +143,7 @@ namespace fts
     };*/
 
     template <>
-    inline void OnComponentAdded<TransformComponent>(entt::registry& reg,
-        entt::entity ent)
+    inline void OnComponentAdded<TransformComponent>(entt::registry& reg, entt::entity ent)
     {
         auto& data = reg.get<TransformComponent>(ent);
         data.ecs = &reg;
@@ -158,8 +158,7 @@ namespace fts
     }*/
 
     template <>
-    inline void OnComponentAdded<DirectionalLightComponent>(entt::registry& reg,
-        entt::entity ent)
+    inline void OnComponentAdded<DirectionalLightComponent>(entt::registry& reg, entt::entity ent)
     {
         auto& light = reg.get<DirectionalLightComponent>(ent);
         if (light.is_cast_shadow) {
@@ -168,8 +167,7 @@ namespace fts
     }
 
     template <>
-    inline void OnComponentAdded<PointLightComponent>(entt::registry& reg,
-        entt::entity ent)
+    inline void OnComponentAdded<PointLightComponent>(entt::registry& reg, entt::entity ent)
     {
         auto& light = reg.get<PointLightComponent>(ent);
         if (light.is_cast_shadow) {

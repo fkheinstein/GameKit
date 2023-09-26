@@ -10,7 +10,7 @@
 #include "Graphics/Mesh.h"
 #include "Graphics/Framebuffer.h"
 
-#include "Graphics/Camera.h"
+#include "Camera/Camera.h"
 //#include "Graphics/Font.hpp"
 
 
@@ -160,10 +160,12 @@ namespace fts
         }
     }
 
-    void Renderer::Submit(const Shader& shader, const VertexArray& vao, MeshTopology topology, size_t count, size_t offset,  bool index)
+    void Renderer::Submit(const Shader& shader, const VertexArray& vao,
+        MeshTopology topology, size_t count, size_t offset,  bool index)
     {
         s_device->SetShader(&shader);
         s_device->SetVertexArray(&vao);
+
         if (index) {
             s_device->DrawElements(topology, count, offset);
         }
@@ -187,8 +189,7 @@ namespace fts
         shader.SetUniformBuffer("Camera", *s_data.camera_ubo);
     }
 
-    void Renderer::ComputeImage(const Shader& shader, int32_t width, int32_t height,
-        int32_t depth)
+    void Renderer::ComputeImage(const Shader& shader, int32_t width, int32_t height, int32_t depth)
     {
         glm::vec3 local_group_size = shader.GetLocalGroupSize();
         s_device->SetShader(&shader);

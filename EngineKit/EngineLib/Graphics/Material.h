@@ -6,6 +6,7 @@ namespace fts
 
     class Texture;
     using Vector3f = glm::vec3;
+    using Matrix4f = glm::mat4;
 
     enum class MaterialType
     {

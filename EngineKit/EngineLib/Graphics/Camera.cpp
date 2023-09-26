@@ -2,7 +2,7 @@
 
 #include "Graphics/Camera.h"
 
-namespace fts
+namespace fts::old
 {
     
     glm::quat Camera::GetOrientation() {

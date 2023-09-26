@@ -15,11 +15,20 @@
 #include <Renderer/Renderer2D.h>
 #include <Renderer/Renderer3D.h>
 
+#include <Renderer/PostProcessRenderPass.h>
+#include <Renderer/SpriteRenderPass.h>
+#include <Renderer/SkyboxRenderPass.h>
+#include <Renderer/DeferredRenderPass.h>
 
 #include "ECS/Component.h"
 #include "ECS/SceneManager.h"
 
 
+
+#include "Camera/Camera.h"
+#include "Camera/PerspectiveCamera.h"
+#include "Camera/CameraController.h"
+#include "Camera/PerspectiveCameraController.h"
 
 
 namespace fts {
@@ -45,12 +54,29 @@ namespace fts {
         Renderer2D::Init(m_resources->shaders);
         Renderer3D::Init();
 
+
+        SkyboxRenderPass::Init(m_resources->shaders, m_resources->textures.Get("skybox/default").Get());
+        PostProcessRenderPass::Init(PostProcessSettings{ m_width, m_height }, m_device, m_resources->shaders);
+        DeferredRenderPass::Init(DeferredRenderSettings{ m_width, m_height, m_msaa }, m_device, m_resources->shaders , m_resources->models);
+
+
+        PostProcessRenderPass::Init(PostProcessSettings{ m_width, m_height }, m_device, m_resources->shaders);
+        SpriteRenderPass::Init(m_resources->textures);
+
         m_light_icon = m_resources->textures.Get("icon/light");
 
 
-        fts::evt::EventManager::eventDispatcher.appendListener(evt::EventType::WindowResize, [this](const evt::Event& event) {
-            //this->SetRenderSize(event);
-            });
+        mWindowResize = fts::evt::EventManager::eventDispatcher.appendListener(
+            fts::evt::EventType::WindowResize,
+
+            eventpp::argumentAdapter<void(const fts::evt::WindowResizeEvent&)>(
+                [this](const fts::evt::WindowResizeEvent& evt) {
+
+                    FTS_CORE_TRACE(evt.ToString());
+                    this->SetRenderSize(evt.GetWidth(), evt.GetHeight());
+                }
+            )
+        );
 
     }
 
@@ -61,22 +87,14 @@ namespace fts {
         m_depth_buffer = Renderbuffer::Create(m_width, m_height, m_msaa, DataFormat::Depth24);
 
         m_main_target->Attach(*m_color_buffer, 0, 0);
-        m_main_target->Attach(*m_depth_buffer, 0);
+        m_main_target->Attach(*m_depth_buffer, 0);     
+    }
 
 
-        mWindowResize = fts::evt::EventManager::eventDispatcher.appendListener(
-            fts::evt::EventType::WindowResize,
-
-            eventpp::argumentAdapter<void(const fts::evt::WindowResizeEvent&)>(
-                [this](const fts::evt::WindowResizeEvent& evt) {
-
-
-                    evt.ToString();
-
-                    this->SetRenderSize(evt.GetWidth(), evt.GetHeight());
-                }
-            )
-        );
+    void GraphicsLayer::OutputColorBuffer(Framebuffer* framebuffer, int attachment)
+    {
+        m_color_output = framebuffer;
+        m_color_output_attachment = attachment;
     }
 
 
@@ -99,7 +117,11 @@ namespace fts {
             //camComp.camera.SetWorldTransform(trans.GetWorldTransform().GetMatrix());
             cameraComp = camComp;
             transformComp = trans;
+
+
             });
+
+        auto& camera = cameraComp.cameraController->GetCamera();
 
 
         /*if (cameraComp.camera == nullptr) 
@@ -130,6 +152,12 @@ namespace fts {
         m_post_rendering_time = 0;
         Clock clock;
 
+        Scene* scene = m_scenes->GetCurrentScene();
+        auto view = scene->view<CameraComponent>();
+        view.each([&](CameraComponent& camComp) {
+            
+            camComp.cameraController->OnUpdate(dt);
+            });
 
 
 
@@ -151,8 +179,55 @@ namespace fts {
     }
 
 
-    void GraphicsLayer::OnImGui() {
 
+    uint32_t GraphicsLayer::ReadEntityId(int x, int y) const
+    {
+        uint32_t id = -1;
+        const Texture* entity_buffer = DeferredRenderPass::GetEntityBuffer();
+        if (x >= 0 && y >= 0 && x < entity_buffer->GetWidth() &&
+            y < entity_buffer->GetHeight()) {
+            entity_buffer->ReadPixels(0, x, y, 0, 1, 1, 1, sizeof(id), &id);
+        }
+        return id;
+    }
+
+    void GraphicsLayer::OnImGui()
+    {
+        if (m_debug) {
+            const ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_Framed |
+                ImGuiTreeNodeFlags_SpanAvailWidth |
+                ImGuiTreeNodeFlags_AllowItemOverlap |
+                ImGuiTreeNodeFlags_FramePadding;
+            ImGui::Begin("Graphics Debug");
+            {
+                if (ImGui::TreeNodeEx("Profiles",
+                    flags | ImGuiTreeNodeFlags_DefaultOpen)) {
+                    ImGui::TextUnformatted("Renderer2D Debug Info:");
+                    ImGui::TextWrapped("%s", Renderer2D::GetDebugInfo().c_str());
+                    ImGui::TextUnformatted("Renderer3D Debug Info:");
+                    ImGui::TextWrapped("%s", Renderer3D::GetDebugInfo().c_str());
+                    ImGui::Text("FPS:%.2f(%.2f ms)", m_fps.GetFPS(),
+                        m_fps.GetFrameTime());
+                    ImGui::TreePop();
+                }
+                if (ImGui::TreeNodeEx("Deferred Render Pass", flags)) {
+                    ImGui::TextUnformatted("Deferred Rendering Time:");
+                    ImGui::TextWrapped("%.2f ms", m_deferred_time);
+                    DeferredRenderPass::ImGui();
+                    ImGui::TreePop();
+                }
+                if (ImGui::TreeNodeEx("Post Process Render Pass", flags)) {
+                    ImGui::TextUnformatted("Post Process Rendering Time:");
+                    ImGui::TextWrapped("%.2f ms", m_post_rendering_time);
+                    PostProcessRenderPass::ImGui();
+                    ImGui::TreePop();
+                }
+            }
+            ImGui::End();
+            // Reset debug info
+            Renderer2D::Reset();
+            Renderer3D::Reset();
+        }
     }
 
 
@@ -162,13 +237,13 @@ namespace fts {
         m_width = width;
         m_height = height;
         InitBuffers();
+
+
+        DeferredRenderPass::SetRenderSize(width, height);
+        PostProcessRenderPass::SetRenderSize(width, height);
     }
 
     void GraphicsLayer::SetCamera(Camera* camera) { m_camera = camera; }
 
-    void GraphicsLayer::OutputColorBuffer(Framebuffer* framebuffer, int attachment)
-    {
-        m_color_output = framebuffer;
-        m_color_output_attachment = attachment;
-    }
+
 }

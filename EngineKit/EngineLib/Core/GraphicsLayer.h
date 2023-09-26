@@ -32,7 +32,6 @@ namespace fts
         void SetCamera(Camera* camera);
         void SetDebug(bool debug) { m_debug = debug; }
 
-
         Framebuffer* GetFramebuffer() { return m_main_target.get(); }
         void OutputColorBuffer(Framebuffer* framebuffer, int attachment);
         uint32_t ReadEntityId(int x, int y) const;
